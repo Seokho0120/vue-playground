@@ -1,5 +1,5 @@
 <template>
-	<h2>하이하이</h2>
+	<h2 class="text-3xl font-bold">하이하이</h2>
 </template>
 <script setup></script>
 
