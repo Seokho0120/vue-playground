@@ -29,8 +29,9 @@
 			'mt-6': $route.path === '/posts',
 		}"
 	>
-		<div class="w-full" v-for="post in posts" :key="post.id">
+		<div class="w-full cursor-pointer" v-for="post in posts" :key="post.id">
 			<PostItem
+				@click="goPage(post.id)"
 				:title="post.title"
 				:content="post.content"
 				:created-at="post.createdAt"
@@ -45,22 +46,33 @@ import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
+import { useCounterStore } from '@/stores/couter';
 
 const router = useRouter();
 const posts = ref([]);
+const counterStore = useCounterStore();
 
-const goToWrite = () => {
+const goPage = id => {
 	router.push({
-		name: 'PostCreate',
+		name: 'PostDetail',
+		params: {
+			id: id,
+		},
 	});
 };
 
 const fetchPosts = async () => {
 	const { data } = await getPosts();
 	posts.value = data;
+	counterStore.setCouter(data.length);
 };
 fetchPosts();
+
+// const goToWrite = () => {
+// 	router.push({
+// 		name: 'PostCreate',
+// 	});
+// };
 </script>
 
 <style lang="scss" scoped></style>
-import { useRouter } from 'vue-router';

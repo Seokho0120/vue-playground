@@ -4,12 +4,12 @@ import TheView from '@/layouts/TheView.vue';
 </script>
 
 <template>
-	<div class="flex items-center justify-center drop-shadow-2xl mt-10">
+	<main class="flex items-center justify-center drop-shadow-2xl mt-10">
 		<div class="w-1/2 bg-white p-10 rounded-3xl">
-			<NavView v-if="$route.path !== '/posts'" />
+			<NavView v-if="$route.path === '/'" />
 			<TheView />
 		</div>
-	</div>
+	</main>
 </template>
 
 <style></style>

@@ -13,17 +13,21 @@
 				</RouterLink>
 			</div>
 		</div>
-		<p class="">7 Tasks today!</p>
-
-		<!-- <nav class="flex flex-col gap-4 mt-4">
-			<RouterLink to="/">home</RouterLink>
-			<RouterLink to="/about">about</RouterLink>
-			<RouterLink to="/posts">posts</RouterLink>
-			<RouterLink to="/contact">contact</RouterLink>
-		</nav> -->
+		<div class="flex gap-1">
+			<p class="font-bold text-custom-red">
+				{{ counter }}
+			</p>
+			Tasks today!
+		</div>
 	</header>
 </template>
 
-<script setup></script>
+<script setup>
+import { useCounterStore } from '@/stores/couter';
+import { storeToRefs } from 'pinia';
+
+const counterStore = useCounterStore();
+const { counter } = storeToRefs(counterStore);
+</script>
 
 <style scoped></style>
