@@ -1,6 +1,11 @@
-<template>
-	<h2 class="text-3xl font-bold">하이하이</h2>
-</template>
-<script setup></script>
+<script setup>
+import NavView from '@/layouts/NavView.vue';
+import TheView from '@/layouts/TheView.vue';
+</script>
 
-<style scoped></style>
+<template className="flex flex-col w-full max-w-screen-2xl mx-auto">
+	<NavView />
+	<TheView />
+</template>
+
+<style></style>
