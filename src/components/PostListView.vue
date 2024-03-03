@@ -1,7 +1,12 @@
 <template>
-	<div>PostListView</div>
+	<h2>PostList</h2>
+	<div>
+		<PostItem />
+	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import PostItem from './posts/PostItem.vue';
+</script>
 
 <style lang="scss" scoped></style>

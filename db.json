@@ -1,0 +1,27 @@
+{
+  "posts": [
+    {
+      "title": "날짜 나와라",
+      "content": "날짜 나와라",
+      "createdAt": 1708997094188,
+      "id": 1,
+      "image": "best-react-practices.png"
+
+    },
+    {
+      "title": "부분수정22333",
+      "content": "부분수정22333",
+      "createdAt": 1708998153071,
+      "id": 2,
+      "image": "javascript-10-tips.png"
+    },
+    {
+      "title": "알람 테스트",
+      "content": "알람 테스트",
+      "createdAt": 1708998824336,
+      "id": 3,
+      "image": "javascript-basic.png"
+    }
+  ]
+}
+
