@@ -21,7 +21,9 @@
 				</svg>
 			</div>
 			<input
-				placeholder="Search Task"
+				:value="title"
+				@input="changeTitle"
+				placeholder="Search for Tasks Title"
 				type="text"
 				class="block w-full p-2 pl-10 text-sm rounded-xl text-lg bg-gray-100"
 			/>
@@ -29,6 +31,18 @@
 	</form>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+	title: String,
+});
+
+const emit = defineEmits(['update:title']);
+
+const changeTitle = e => {
+	setTimeout(() => {
+		emit('update:title', e.target.value);
+	}, 500);
+};
+</script>
 
 <style lang="scss" scoped></style>

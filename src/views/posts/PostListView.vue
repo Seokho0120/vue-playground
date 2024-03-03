@@ -7,7 +7,7 @@
 		글쓰기
 	</button> -->
 
-	<PostFilter></PostFilter>
+	<PostFilter :title="title" @update:title="title = $event" />
 	<div class="flex items-center justify-between">
 		<div v-if="$route.path !== '/'" class="flex items-center">
 			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
@@ -29,7 +29,12 @@
 			'mt-6': $route.path === '/posts',
 		}"
 	>
-		<div class="w-full cursor-pointer" v-for="post in posts" :key="post.id">
+		<!-- <div class="w-full cursor-pointer" v-for="post in posts" :key="post.id"> -->
+		<div
+			class="w-full cursor-pointer"
+			v-for="post in filteredPosts"
+			:key="post.id"
+		>
 			<PostItem
 				@click="goPage(post.id)"
 				:title="post.title"
@@ -41,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
 import PostItem from '@/components/posts/PostItem.vue';
@@ -50,6 +55,7 @@ import { useCounterStore } from '@/stores/couter';
 
 const router = useRouter();
 const posts = ref([]);
+const title = ref('');
 const counterStore = useCounterStore();
 
 const goPage = id => {
@@ -67,6 +73,16 @@ const fetchPosts = async () => {
 	counterStore.setCouter(data.length);
 };
 fetchPosts();
+
+const filteredPosts = computed(() => {
+	if (!title.value) {
+		return posts.value;
+	}
+
+	return posts.value.filter(post =>
+		post.title.toLowerCase().includes(title.value.toLowerCase()),
+	);
+});
 
 // const goToWrite = () => {
 // 	router.push({
