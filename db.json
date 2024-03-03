@@ -57,6 +57,20 @@
       "createdAt": 1708998824336,
       "id": 8,
       "image": "javascript-basic.png"
+    },
+    {
+      "title": "제목5",
+      "content": "내용5",
+      "createdAt": 1708998153071,
+      "id": 9,
+      "image": "javascript-10-tips.png"
+    },
+    {
+      "title": "제목6",
+      "content": "내용6",
+      "createdAt": 1708998824336,
+      "id": 10,
+      "image": "javascript-basic.png"
     }
   ]
 }

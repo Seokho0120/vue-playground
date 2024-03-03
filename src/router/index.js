@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeListView from '@/components/HomeListView.vue';
-import AboutView from '@/components/AboutView.vue';
+import MyPageView from '@/views/MyPageView.vue';
 import PostListView from '@/components/PostListView.vue';
-import ContactView from '@/components/ContactView.vue';
+import PostCreateView from '@/components/posts/PostCreateView.vue';
 
 const routes = [
 	{
 		path: '/',
 		name: 'Home',
-		component: HomeListView,
+		component: PostListView,
+	},
+	{
+		path: '/mypage',
+		name: 'MyPage',
+		component: MyPageView,
 	},
 	{
 		path: '/posts',
@@ -16,14 +20,9 @@ const routes = [
 		component: PostListView,
 	},
 	{
-		path: '/contact',
-		name: 'Contact',
-		component: ContactView,
-	},
-	{
-		path: '/about',
-		name: 'About',
-		component: AboutView,
+		path: '/posts/create',
+		name: 'PostCreate',
+		component: PostCreateView,
 	},
 ];
 
