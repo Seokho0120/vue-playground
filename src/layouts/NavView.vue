@@ -1,5 +1,5 @@
 <template>
-	<header class="pb-6">
+	<header class="pb-2">
 		<div class="flex items-center justify-between">
 			<RouterLink class="text-3xl font-bold" to="/">Hey, River!</RouterLink>
 

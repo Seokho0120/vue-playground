@@ -7,19 +7,25 @@
 		글쓰기
 	</button> -->
 
-	<div class="flex justify-between">
+	<PostFilter></PostFilter>
+	<div class="flex items-center justify-between">
 		<div v-if="$route.path !== '/'" class="flex items-center">
 			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
 		</div>
+
 		<h2 class="text-3xl font-bold pb-4">Tasks</h2>
-		<div class="flex items-center">
+
+		<div
+			class="flex items-center"
+			:class="{ invisible: $route.path === '/posts' }"
+		>
 			<RouterLink to="/posts" class="text-[#ee3914]">See All &gt;</RouterLink>
 		</div>
 	</div>
 
 	<div
+		class="grid grid-cols-2 gap-4"
 		:class="{
-			'grid grid-cols-2 gap-4': true,
 			'mt-6': $route.path === '/posts',
 		}"
 	>
@@ -37,7 +43,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts } from '@/api/posts';
-import PostItem from './posts/PostItem.vue';
+import PostItem from '@/components/posts/PostItem.vue';
+import PostFilter from '@/components/posts/PostFilter.vue';
 
 const router = useRouter();
 const posts = ref([]);
