@@ -9,17 +9,16 @@
 				alt="best-react-practices"
 			/>
 		</div> -->
-
 		<div class="flex flex-col justify-between p-4 leading-normal">
 			<h5
 				class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
 			>
-				title: {{ title }}
+				{{ title }}
 			</h5>
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-				content: {{ content }}
+				{{ content }}
 			</p>
-			<p>createdAt: {{ createdAt }}</p>
+			<p>{{ createdAt }}</p>
 		</div>
 	</div>
 </template>

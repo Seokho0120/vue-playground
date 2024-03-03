@@ -1,25 +1,61 @@
 {
   "posts": [
     {
-      "title": "날짜 나와라",
-      "content": "날짜 나와라",
+      "title": "제목1",
+      "content": "내용1",
       "createdAt": 1708997094188,
       "id": 1,
       "image": "best-react-practices.png"
 
     },
     {
-      "title": "부분수정22333",
-      "content": "부분수정22333",
+      "title": "제목2",
+      "content": "내용2",
       "createdAt": 1708998153071,
       "id": 2,
       "image": "javascript-10-tips.png"
     },
     {
-      "title": "알람 테스트",
-      "content": "알람 테스트",
+      "title": "제목3",
+      "content": "내용3",
       "createdAt": 1708998824336,
       "id": 3,
+      "image": "javascript-basic.png"
+    },
+    {
+      "title": "제목4",
+      "content": "내용4",
+      "createdAt": 1708997094188,
+      "id": 4,
+      "image": "best-react-practices.png"
+
+    },
+    {
+      "title": "제목5",
+      "content": "내용5",
+      "createdAt": 1708998153071,
+      "id": 5,
+      "image": "javascript-10-tips.png"
+    },
+    {
+      "title": "제목6",
+      "content": "내용6",
+      "createdAt": 1708998824336,
+      "id": 6,
+      "image": "javascript-basic.png"
+    },
+    {
+      "title": "제목7",
+      "content": "내용7",
+      "createdAt": 1708998153071,
+      "id": 7,
+      "image": "javascript-10-tips.png"
+    },
+    {
+      "title": "제목8",
+      "content": "내용8",
+      "createdAt": 1708998824336,
+      "id": 8,
       "image": "javascript-basic.png"
     }
   ]
