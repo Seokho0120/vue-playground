@@ -1,12 +1,4 @@
 <template>
-	<!-- <button
-		@click="goToWrite"
-		type="button"
-		class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-	>
-		글쓰기
-	</button> -->
-
 	<PostFilter :title="title" @update:title="title = $event" />
 	<div class="flex items-center justify-between">
 		<div v-if="$route.path !== '/'" class="flex items-center">
@@ -22,6 +14,14 @@
 			<RouterLink to="/posts" class="text-[#ee3914]">See All &gt;</RouterLink>
 		</div>
 	</div>
+
+	<button
+		@click="goToWrite"
+		type="button"
+		class="w-12 h-12 text-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-full flex items-center justify-center me-2 mb-2"
+	>
+		+
+	</button>
 
 	<div
 		class="grid grid-cols-2 gap-4"
