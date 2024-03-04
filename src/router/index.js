@@ -3,6 +3,7 @@ import MyPageView from '@/views/MyPageView.vue';
 import PostCreateView from '@/components/posts/PostCreateView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
+import PostEditView from '@/views/posts/PostEditView.vue';
 
 const routes = [
 	{
@@ -19,6 +20,11 @@ const routes = [
 		path: '/posts/:id',
 		name: 'PostDetail',
 		component: PostDetailView,
+	},
+	{
+		path: '/posts/:id/edit',
+		name: 'PostEdit',
+		component: PostEditView,
 	},
 	{
 		path: '/posts/create',

@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="flex flex-col">
-			<label class="text-2xl font-bold pb-4">Category</label>
+			<label class="text-2xl font-bold pb-4">Status</label>
 			<div class="flex flex-wrap gap-3">
 				<div
 					v-for="category in CATEGORIES"
@@ -42,27 +42,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="flex flex-col">
-			<div class="flex flex-wrap gap-4">
-				<div
-					v-for="category in CATEGORIES"
-					:key="category.id"
-					class="flex items-center"
-				>
-					<input
-						:value="category.name"
-						@input="$emit('update:category', $event.target.value)"
-						type="checkbox"
-						:id="category.id"
-						class="mr-2"
-					/>
-					<label :for="category.id" class="cursor-pointer">
-						{{ category.name }}
-					</label>
-				</div>
-			</div>
-		</div> -->
 
 		<div class="flex justify-center gap-2 mt-4">
 			<slot name="actions"></slot>
