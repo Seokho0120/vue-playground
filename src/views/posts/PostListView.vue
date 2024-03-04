@@ -1,11 +1,14 @@
-<template>
+<template class="relative">
 	<PostFilter :title="title" @update:title="title = $event" />
+
 	<div class="flex items-center justify-between">
 		<div v-if="$route.path !== '/'" class="flex items-center">
 			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
 		</div>
 
-		<h2 class="text-3xl font-bold pb-4">Tasks</h2>
+		<div class="flex item-center pb-4">
+			<h2 class="text-3xl font-bold">Tasks</h2>
+		</div>
 
 		<div
 			class="flex items-center"
@@ -15,25 +18,17 @@
 		</div>
 	</div>
 
-	<button
-		@click="goToWrite"
-		type="button"
-		class="w-12 h-12 text-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-full flex items-center justify-center me-2 mb-2"
-	>
-		+
-	</button>
-
-	<div
+	<!-- <div
 		class="grid grid-cols-2 gap-4"
 		:class="{
 			'mt-6': $route.path === '/posts',
 		}"
-	>
-		<!-- <div class="w-full cursor-pointer" v-for="post in posts" :key="post.id"> -->
+	> -->
+	<div class="grid grid-cols-2 gap-4 relative">
 		<div
-			class="w-full cursor-pointer"
 			v-for="post in filteredPosts"
 			:key="post.id"
+			class="w-full cursor-pointer"
 		>
 			<PostItem
 				@click="goPage(post.id)"
@@ -43,6 +38,14 @@
 			/>
 		</div>
 	</div>
+
+	<button
+		@click="goToWrite"
+		type="button"
+		class="absolute right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 rounded-full"
+	>
+		+
+	</button>
 </template>
 
 <script setup>
@@ -84,11 +87,11 @@ const filteredPosts = computed(() => {
 	);
 });
 
-// const goToWrite = () => {
-// 	router.push({
-// 		name: 'PostCreate',
-// 	});
-// };
+const goToWrite = () => {
+	router.push({
+		name: 'PostCreate',
+	});
+};
 </script>
 
 <style lang="scss" scoped></style>
