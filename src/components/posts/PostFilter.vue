@@ -25,7 +25,7 @@
 				@input="changeTitle"
 				placeholder="Search for Tasks Title"
 				type="text"
-				class="block w-full p-2 pl-10 text-sm rounded-xl text-lg bg-gray-100"
+				class="block w-full p-2 pl-10 text-sm rounded-xl bg-gray-100"
 			/>
 		</div>
 	</form>

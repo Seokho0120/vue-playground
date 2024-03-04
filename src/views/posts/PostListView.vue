@@ -1,4 +1,4 @@
-<template class="relative">
+<template>
 	<PostFilter :title="title" @update:title="title = $event" />
 
 	<div class="flex items-center justify-between">
@@ -42,9 +42,9 @@
 	<button
 		@click="goToWrite"
 		type="button"
-		class="absolute right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 rounded-full"
+		class="absolute right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-full"
 	>
-		+
+		<span>+</span>
 	</button>
 </template>
 
@@ -94,4 +94,4 @@ const goToWrite = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

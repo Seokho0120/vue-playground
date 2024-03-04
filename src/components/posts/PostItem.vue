@@ -18,12 +18,14 @@
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
 				{{ content }}
 			</p>
-			<p>{{ createdAt }}</p>
+			<p>{{ modifiedDate }}</p>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { computed, inject } from 'vue';
+
 const props = defineProps({
 	title: {
 		type: String,
@@ -36,6 +38,11 @@ const props = defineProps({
 		type: [String, Date, Number],
 	},
 });
+
+const dayjs = inject('dayjs');
+const modifiedDate = computed(() =>
+	dayjs(props.createdAt).format('YYYY-MM-DD HH:mm'),
+);
 </script>
 
 <style scoped></style>
