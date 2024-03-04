@@ -1,36 +1,36 @@
 {
   "posts": [
     {
-      "title": "제목1",
-      "content": "내용1",
+      "title": "Personal Study",
+      "content": "vue3, JS",
       "createdAt": 1708997094188,
       "id": 1,
       "category": "Personal"
     },
     {
-      "title": "하하하하하2",
-      "content": "내용2",
+      "title": "Project Test",
+      "content": "Make Admin Page",
       "createdAt": 1708998153071,
       "id": 2,
       "category": "Work"
     },
     {
-      "title": "ㅋㅋㅋㅋ3",
-      "content": "내용3",
+      "title": "kkkkk",
+      "content": "hahaha",
       "createdAt": 1708998824336,
       "id": 3,
       "category": "Personal"
     },
     {
-      "title": "하하4",
-      "content": "ㅠㅠ4",
+      "title": "haha",
+      "content": "crycrycry",
       "createdAt": 1708997094188,
       "id": 4,
       "category": "Study"
     },
     {
-      "title": "ㅋㅋㅋ5",
-      "content": "내용5",
+      "title": "kkk2",
+      "content": "crycry22",
       "createdAt": 1708998153071,
       "id": 5,
       "category": "Health"
@@ -55,34 +55,6 @@
       "createdAt": 1708998824336,
       "id": 8,
       "category": "Personal"
-    },
-    {
-      "title": "제목7",
-      "content": "내용7",
-      "createdAt": 1708998153071,
-      "id": 9,
-      "category": "Study"
-    },
-    {
-      "title": "제목8",
-      "content": "내용8",
-      "createdAt": 1708998824336,
-      "id": 10,
-      "category": "Other"
-    },
-    {
-      "id": "0199",
-      "title": "테스트 제목",
-      "content": "테스트 내용",
-      "category": "Personal",
-      "createdAt": 1709567933605
-    },
-    {
-      "id": "c10d",
-      "title": "테스트 제목222",
-      "content": "테스트 내용222",
-      "category": "Health",
-      "createdAt": 1709567985624
     }
   ]
 }

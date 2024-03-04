@@ -18,12 +18,6 @@
 		</div>
 	</div>
 
-	<!-- <div
-		class="grid grid-cols-2 gap-4"
-		:class="{
-			'mt-6': $route.path === '/posts',
-		}"
-	> -->
 	<div class="grid grid-cols-2 gap-4 relative">
 		<div
 			v-for="post in filteredPosts"
@@ -35,6 +29,7 @@
 				:title="post.title"
 				:content="post.content"
 				:created-at="post.createdAt"
+				:category="post.category"
 			/>
 		</div>
 	</div>
