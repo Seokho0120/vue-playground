@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="flex flex-col">
-			<label for="content" class="text-2xl font-bold pb-4">Content</label>
+			<label for="content" class="text-2xl font-bold pb-4">Description</label>
 			<textarea
 				:value="content"
 				@input="$emit('update:content', $event.target.value)"
@@ -29,14 +29,26 @@
 			<label class="text-2xl font-bold pb-4">Category</label>
 			<div class="flex flex-wrap gap-4">
 				<div
-					v-for="test in CATEGORIES"
-					:key="test.id"
+					v-for="category in CATEGORIES"
+					:key="category.id"
 					class="flex items-center"
 				>
-					<input type="checkbox" :id="test.id" class="mr-2" />
-					<label :for="test.id" class="cursor-pointer">{{ test.name }}</label>
+					<input
+						:value="category.name"
+						@input="$emit('update:category', $event.target.value)"
+						type="checkbox"
+						:id="category.id"
+						class="mr-2"
+					/>
+					<label :for="category.id" class="cursor-pointer">
+						{{ category.name }}
+					</label>
 				</div>
 			</div>
+		</div>
+
+		<div class="flex gap-2 mt-4">
+			<slot name="actions"></slot>
 		</div>
 	</form>
 </template>
@@ -68,9 +80,10 @@ const CATEGORIES = [
 defineProps({
 	title: String,
 	content: String,
+	category: String,
 });
 
-defineEmits(['update:title', 'update:content']);
+defineEmits(['update:title', 'update:content', 'update:category']);
 </script>
 
 <style lang="scss" scoped></style>

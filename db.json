@@ -5,16 +5,13 @@
       "content": "내용1",
       "createdAt": 1708997094188,
       "id": 1,
-      "image": "best-react-practices.png",
       "category": "Personal"
-
     },
     {
       "title": "하하하하하2",
       "content": "내용2",
       "createdAt": 1708998153071,
       "id": 2,
-      "image": "javascript-10-tips.png",
       "category": "Work"
     },
     {
@@ -22,7 +19,6 @@
       "content": "내용3",
       "createdAt": 1708998824336,
       "id": 3,
-      "image": "javascript-basic.png",
       "category": "Personal"
     },
     {
@@ -30,16 +26,13 @@
       "content": "ㅠㅠ4",
       "createdAt": 1708997094188,
       "id": 4,
-      "image": "best-react-practices.png",
       "category": "Study"
-
     },
     {
       "title": "ㅋㅋㅋ5",
       "content": "내용5",
       "createdAt": 1708998153071,
       "id": 5,
-      "image": "javascript-10-tips.png",
       "category": "Health"
     },
     {
@@ -47,7 +40,6 @@
       "content": "내용6",
       "createdAt": 1708998824336,
       "id": 6,
-      "image": "javascript-basic.png",
       "category": "Other"
     },
     {
@@ -55,7 +47,6 @@
       "content": "내용7",
       "createdAt": 1708998153071,
       "id": 7,
-      "image": "javascript-10-tips.png",
       "category": "Work"
     },
     {
@@ -63,7 +54,6 @@
       "content": "내용8",
       "createdAt": 1708998824336,
       "id": 8,
-      "image": "javascript-basic.png",
       "category": "Personal"
     },
     {
@@ -71,7 +61,6 @@
       "content": "내용7",
       "createdAt": 1708998153071,
       "id": 9,
-      "image": "javascript-10-tips.png",
       "category": "Study"
     },
     {
@@ -79,9 +68,21 @@
       "content": "내용8",
       "createdAt": 1708998824336,
       "id": 10,
-      "image": "javascript-basic.png",
       "category": "Other"
+    },
+    {
+      "id": "0199",
+      "title": "테스트 제목",
+      "content": "테스트 내용",
+      "category": "Personal",
+      "createdAt": 1709567933605
+    },
+    {
+      "id": "c10d",
+      "title": "테스트 제목222",
+      "content": "테스트 내용222",
+      "category": "Health",
+      "createdAt": 1709567985624
     }
   ]
 }
-
