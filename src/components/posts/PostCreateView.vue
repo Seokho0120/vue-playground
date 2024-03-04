@@ -18,10 +18,7 @@
 			>See All &gt;</RouterLink
 		>
 	</div>
-	<PostForm
-		v-model:title="form.title"
-		v-model:content="form.content"
-	></PostForm>
+	<PostForm v-model:title="form.title" v-model:content="form.content" />
 </template>
 
 <script setup>
