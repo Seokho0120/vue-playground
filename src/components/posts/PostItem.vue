@@ -23,7 +23,7 @@
 			>
 				{{ title }}
 			</h5>
-			<p class="mb-3 font-normal text-gray-800 dark:text-gray-400">
+			<p class="mb-3 font-normal text-gray-800 dark:text-gray-400 truncate">
 				{{ content }}
 			</p>
 			<p class="text-sm text-gray-500">{{ modifiedDate }}</p>
@@ -52,9 +52,8 @@ const props = defineProps({
 
 const dayjs = inject('dayjs');
 
-const modifiedDate = computed(
-	() => dayjs(props.createdAt).format('YYYY-MM-DD'),
-	// dayjs(props.createdAt).format('YYYY-MM-DD HH:mm'),
+const modifiedDate = computed(() =>
+	dayjs(props.createdAt).format('YYYY-MM-DD'),
 );
 
 const categoryColor = computed(() => {
