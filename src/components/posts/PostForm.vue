@@ -27,6 +27,23 @@
 
 		<div class="flex flex-col">
 			<label class="text-2xl font-bold pb-4">Category</label>
+			<div class="flex flex-wrap gap-3">
+				<div
+					v-for="category in CATEGORIES"
+					:key="category.id"
+					class="flex items-center gap-2"
+				>
+					<div
+						:class="`${getCategoryColor(category.name, selectedCategory === category.name)} text-xs px-2.5 py-0.5 rounded-full cursor-pointer`"
+						@click="selectCategory(category.name)"
+					>
+						{{ category.name }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="flex flex-col">
 			<div class="flex flex-wrap gap-4">
 				<div
 					v-for="category in CATEGORIES"
@@ -45,15 +62,17 @@
 					</label>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="flex gap-2 mt-4">
+		<div class="flex justify-center gap-2 mt-4">
 			<slot name="actions"></slot>
 		</div>
 	</form>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const CATEGORIES = [
 	{
 		name: 'Personal',
@@ -83,7 +102,37 @@ defineProps({
 	category: String,
 });
 
-defineEmits(['update:title', 'update:content', 'update:category']);
+const emit = defineEmits(['update:title', 'update:content', 'update:category']);
+
+let selectedCategory = ref('');
+
+const selectCategory = category => {
+	selectedCategory.value = category;
+	emit('update:category', category);
+};
+
+const getCategoryColor = (category, selected = false) => {
+	const colors = {
+		Personal: selected
+			? 'bg-blue-200 text-blue-1000'
+			: 'bg-blue-100 text-blue-800',
+		Work: selected
+			? 'bg-green-200 text-green-1000'
+			: 'bg-green-100 text-green-800',
+		Study: selected
+			? 'bg-yellow-200 text-yellow-1000'
+			: 'bg-yellow-100 text-yellow-800',
+		Health: selected ? 'bg-red-200 text-red-1000' : 'bg-red-100 text-red-800',
+		Other: selected
+			? 'bg-gray-200 text-gray-1000'
+			: 'bg-gray-100 text-gray-800',
+	};
+
+	return (
+		colors[category] ||
+		(colors ? 'bg-blue-200 text-blue-1000' : 'bg-blue-100 text-blue-800')
+	);
+};
 </script>
 
 <style lang="scss" scoped></style>
