@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import NavView from '@/layouts/NavView.vue';
 import TheView from '@/layouts/TheView.vue';
 </script>

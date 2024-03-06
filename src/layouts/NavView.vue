@@ -22,7 +22,7 @@
 	</header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useCounterStore } from '@/stores/couter';
 import { storeToRefs } from 'pinia';
 

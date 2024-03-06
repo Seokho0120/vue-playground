@@ -35,7 +35,7 @@
 	</PostForm>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PostForm from '@/components/posts/PostForm.vue';

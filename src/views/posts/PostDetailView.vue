@@ -35,7 +35,7 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getPostById } from '@/api/posts';
 import { inject, ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
