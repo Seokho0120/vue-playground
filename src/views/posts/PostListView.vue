@@ -20,16 +20,16 @@
 
 	<div class="grid grid-cols-2 gap-4 relative">
 		<div
-			v-for="post in filteredPosts"
-			:key="post.id"
+			v-for="{ id, category, content, createdAt, title } in filteredPosts"
+			:key="id"
 			class="w-full cursor-pointer"
 		>
 			<PostItem
-				@click="goPage(post.id)"
-				:title="post.title"
-				:content="post.content"
-				:created-at="post.createdAt"
-				:category="post.category"
+				@click="goPage(id)"
+				:title="title"
+				:content="content"
+				:created-at="createdAt"
+				:category="category"
 			/>
 		</div>
 	</div>
@@ -57,7 +57,7 @@ const posts = ref<Post[]>([]);
 const title = ref<string>('');
 const counterStore = useCounterStore();
 
-const goPage = id => {
+const goPage = (id: string) => {
 	router.push({
 		name: 'PostDetail',
 		params: {
@@ -67,9 +67,13 @@ const goPage = id => {
 };
 
 const fetchPosts = async () => {
-	const { data } = await getPosts();
-	posts.value = data;
-	counterStore.setCouter(data.length);
+	try {
+		const { data } = await getPosts();
+		posts.value = data;
+		counterStore.setCouter(data.length);
+	} catch (err) {
+		console.error(err);
+	}
 };
 fetchPosts();
 
