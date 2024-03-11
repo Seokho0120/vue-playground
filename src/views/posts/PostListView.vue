@@ -50,10 +50,11 @@ import { getPosts } from '@/api/posts';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import { useCounterStore } from '@/stores/couter';
+import type { Post } from '@/types/posts';
 
 const router = useRouter();
-const posts = ref([]);
-const title = ref('');
+const posts = ref<Post[]>([]);
+const title = ref<string>('');
 const counterStore = useCounterStore();
 
 const goPage = id => {

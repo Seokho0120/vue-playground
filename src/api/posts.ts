@@ -1,7 +1,8 @@
+import type { FetchPostsResponse, Post } from '@/types/posts';
 import axios from 'axios';
 
-export function getPosts() {
-	return axios.get('http://localhost:4000/posts');
+export function getPosts(): Promise<FetchPostsResponse> {
+	return axios.get<Post[]>('http://localhost:4000/posts');
 }
 
 export function getPostById(id) {
