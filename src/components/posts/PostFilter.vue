@@ -1,3 +1,19 @@
+<script setup lang="ts">
+defineProps({
+	title: String,
+});
+
+const emit = defineEmits(['update:title']);
+
+const changeTitle = (e: Event) => {
+	const target = e.target as HTMLInputElement;
+
+	setTimeout(() => {
+		emit('update:title', target.value);
+	}, 500);
+};
+</script>
+
 <template>
 	<form @submit.prevent class="pb-6 py-2">
 		<div class="relative">
@@ -30,19 +46,5 @@
 		</div>
 	</form>
 </template>
-
-<script setup lang="ts">
-defineProps({
-	title: String,
-});
-
-const emit = defineEmits(['update:title']);
-
-const changeTitle = e => {
-	setTimeout(() => {
-		emit('update:title', e.target.value);
-	}, 500);
-};
-</script>
 
 <style lang="scss" scoped></style>

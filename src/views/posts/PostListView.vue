@@ -37,6 +37,7 @@ const filteredPosts = computed(() => {
 		return posts.value;
 	}
 
+	// 대소문자 구분없이 검색 필터
 	return posts.value.filter(post =>
 		post.title.toLowerCase().includes(title.value.toLowerCase()),
 	);
