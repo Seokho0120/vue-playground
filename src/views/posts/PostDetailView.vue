@@ -5,7 +5,7 @@ import { getPostById } from '@/api/posts';
 import type { Post } from '@/types/posts';
 
 const route = useRoute();
-const postId = Number(route.params.id);
+const postId = route.params.id as string;
 
 const post = ref({
 	title: '',
@@ -17,7 +17,6 @@ const post = ref({
 const fetchPost = async () => {
 	try {
 		const { data } = await getPostById(postId);
-		console.log('data', data);
 		setPost(data);
 	} catch (error) {
 		console.error('error', error);

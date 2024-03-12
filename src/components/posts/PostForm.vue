@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
 const CATEGORIES = [
 	{
 		name: 'Personal',
@@ -91,7 +90,7 @@ const getCategoryColor = (category, selected = false) => {
 		</div>
 
 		<div class="flex flex-col">
-			<label class="text-2xl font-bold pb-4">Status</label>
+			<label class="text-2xl font-bold pb-4">Category</label>
 			<div class="flex flex-wrap gap-3">
 				<div
 					v-for="category in CATEGORIES"
