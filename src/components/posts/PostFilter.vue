@@ -1,9 +1,19 @@
 <script setup lang="ts">
+// import useDebounce from '@/hooks/useDebounce';
+// import { watch } from 'vue';
+
+// const props = defineProps({
 defineProps({
 	title: String,
 });
 
 const emit = defineEmits(['update:title']);
+
+// const debouncedTitle = useDebounce(props.title);
+
+// watch(debouncedTitle, newValue => {
+// 	emit('update:title', newValue);
+// });
 
 const changeTitle = (e: Event) => {
 	const target = e.target as HTMLInputElement;
