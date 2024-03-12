@@ -26,13 +26,15 @@
 			<p class="mb-3 font-normal text-gray-800 dark:text-gray-400 truncate">
 				{{ content }}
 			</p>
-			<p class="text-sm text-gray-500">{{ modifiedDate }}</p>
+			<p class="text-sm text-gray-500">
+				{{ $dayjs(props.createdAt).format('YYYY-MM-DD') }}
+			</p>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
 	title: {
@@ -50,12 +52,6 @@ const props = defineProps({
 	},
 });
 
-const dayjs = inject('dayjs');
-
-const modifiedDate = computed(() =>
-	dayjs(props.createdAt).format('YYYY-MM-DD'),
-);
-
 const categoryColor = computed(() => {
 	const colors = {
 		Personal: 'bg-blue-100 text-blue-800',
@@ -65,7 +61,7 @@ const categoryColor = computed(() => {
 		Other: 'bg-gray-100 text-gray-800',
 	};
 
-	return colors[props.category] || 'bg-blue-100';
+	return colors[props.category as keyof typeof colors] || 'bg-blue-100';
 });
 </script>
 

@@ -12,11 +12,11 @@ const posts = ref<Post[]>([]);
 const title = ref<string>('');
 const counterStore = useCounterStore();
 
-const goPage = (id: number) => {
+const goPage = (id: string) => {
 	router.push({
 		name: 'PostDetail',
 		params: {
-			id: id,
+			id,
 		},
 	});
 };
