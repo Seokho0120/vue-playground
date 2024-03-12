@@ -5,11 +5,11 @@ export function getPosts(): Promise<FetchPostsResponse> {
 	return axios.get<Post[]>('http://localhost:4000/posts');
 }
 
-export function getPostById(id: string) {
+export function getPostById(id: number) {
 	return axios.get(`http://localhost:4000/posts/${id}`);
 }
 
-export function createPosts(data) {
+export function createPosts(data: Post) {
 	return axios.post('http://localhost:4000/posts', data);
 }
 

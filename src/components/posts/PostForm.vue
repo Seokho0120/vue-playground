@@ -1,54 +1,3 @@
-<template>
-	<form class="flex flex-col gap-8">
-		<div class="flex flex-col">
-			<label for="title" class="text-2xl font-bold pb-4">Taks Name</label>
-			<input
-				:value="title"
-				@input="$emit('update:title', $event.target.value)"
-				type="text"
-				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
-				placeholder="Title"
-				id="title"
-				autofocus
-			/>
-		</div>
-
-		<div class="flex flex-col">
-			<label for="content" class="text-2xl font-bold pb-4">Description</label>
-			<textarea
-				:value="content"
-				@input="$emit('update:content', $event.target.value)"
-				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
-				placeholder="Content"
-				id="content"
-				rows="5"
-			/>
-		</div>
-
-		<div class="flex flex-col">
-			<label class="text-2xl font-bold pb-4">Status</label>
-			<div class="flex flex-wrap gap-3">
-				<div
-					v-for="category in CATEGORIES"
-					:key="category.id"
-					class="flex items-center gap-2"
-				>
-					<div
-						:class="`${getCategoryColor(category.name, selectedCategory === category.name)} text-xs px-2.5 py-0.5 rounded-full cursor-pointer`"
-						@click="selectCategory(category.name)"
-					>
-						{{ category.name }}
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="flex justify-center gap-2 mt-4">
-			<slot name="actions"></slot>
-		</div>
-	</form>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -113,5 +62,56 @@ const getCategoryColor = (category, selected = false) => {
 	);
 };
 </script>
+
+<template>
+	<form class="flex flex-col gap-8">
+		<div class="flex flex-col">
+			<label for="title" class="text-2xl font-bold pb-4">Taks Name</label>
+			<input
+				:value="title"
+				@input="$emit('update:title', $event.target.value)"
+				type="text"
+				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
+				placeholder="Title"
+				id="title"
+				autofocus
+			/>
+		</div>
+
+		<div class="flex flex-col">
+			<label for="content" class="text-2xl font-bold pb-4">Description</label>
+			<textarea
+				:value="content"
+				@input="$emit('update:content', $event.target.value)"
+				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
+				placeholder="Content"
+				id="content"
+				rows="5"
+			/>
+		</div>
+
+		<div class="flex flex-col">
+			<label class="text-2xl font-bold pb-4">Status</label>
+			<div class="flex flex-wrap gap-3">
+				<div
+					v-for="category in CATEGORIES"
+					:key="category.id"
+					class="flex items-center gap-2"
+				>
+					<div
+						:class="`${getCategoryColor(category.name, selectedCategory === category.name)} text-xs px-2.5 py-0.5 rounded-full cursor-pointer`"
+						@click="selectCategory(category.name)"
+					>
+						{{ category.name }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex justify-center gap-2 mt-4">
+			<slot name="actions"></slot>
+		</div>
+	</form>
+</template>
 
 <style lang="scss" scoped></style>

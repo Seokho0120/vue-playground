@@ -1,74 +1,18 @@
 {
   "posts": [
     {
+      "id": 0,
       "title": "Personal Study",
       "content": "Creating a to-do list using vue3 Refactoring the code after completing UI and functional implementation",
       "createdAt": 1708997094188,
-      "id": "1",
       "category": "Personal"
     },
     {
-      "title": "Project Test",
-      "content": "After setting up the development environment, create an administrator permission page using Vue3.",
-      "createdAt": 1708998153071,
-      "id": "2",
-      "category": "Work"
-    },
-    {
-      "title": "kkkkk",
-      "content": "hahaha",
-      "createdAt": 1708998824336,
-      "id": "3",
+      "id": 1,
+      "title": "Personal Study",
+      "content": "Creating a to-do list using vue3 Refactoring the code after completing UI and functional implementation",
+      "createdAt": 1708997094122,
       "category": "Personal"
-    },
-    {
-      "title": "haha",
-      "content": "crycrycry",
-      "createdAt": 1708997094188,
-      "id": "4",
-      "category": "Study"
-    },
-    {
-      "title": "kkk2",
-      "content": "crycry22",
-      "createdAt": 1708998153071,
-      "id": "5",
-      "category": "Health"
-    },
-    {
-      "title": "제목6",
-      "content": "내용6",
-      "createdAt": 1708998824336,
-      "id": "6",
-      "category": "Other"
-    },
-    {
-      "title": "제목7",
-      "content": "내용7",
-      "createdAt": 1708998153071,
-      "id": "7",
-      "category": "Work"
-    },
-    {
-      "title": "제목8",
-      "content": "내용8",
-      "createdAt": 1708998824336,
-      "id": "8",
-      "category": "Personal"
-    },
-    {
-      "id": "d96f",
-      "title": "test",
-      "content": "testest",
-      "category": "Study",
-      "createdAt": 1709573330751
-    },
-    {
-      "id": "a854",
-      "title": "되나",
-      "content": "되나되나되나되나되나",
-      "category": "Work",
-      "createdAt": 1710177802490
     }
   ]
 }

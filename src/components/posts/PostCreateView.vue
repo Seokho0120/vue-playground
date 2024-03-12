@@ -1,3 +1,31 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import PostForm from '@/components/posts/PostForm.vue';
+import { createPosts } from '@/api/posts';
+import type { Form } from '@/types/posts';
+
+const router = useRouter();
+
+const form = ref<Form>({
+	title: '',
+	content: '',
+	category: '',
+});
+
+const saveTask = async () => {
+	try {
+		await createPosts({
+			...form.value,
+			createdAt: Date.now(),
+		});
+		router.push({ name: 'PostList' });
+	} catch (error) {
+		console.error('error', error);
+	}
+};
+</script>
+
 <template>
 	<div class="flex items-center justify-between">
 		<RouterLink
@@ -34,32 +62,5 @@
 		</template>
 	</PostForm>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import PostForm from '@/components/posts/PostForm.vue';
-import { createPosts } from '@/api/posts';
-
-const router = useRouter();
-
-const form = ref({
-	title: null,
-	content: null,
-	category: null,
-});
-
-const saveTask = async () => {
-	try {
-		await createPosts({
-			...form.value,
-			createdAt: Date.now(),
-		});
-		router.push({ name: 'PostList' });
-	} catch (error) {
-		console.error('error', error);
-	}
-};
-</script>
 
 <style scoped></style>
