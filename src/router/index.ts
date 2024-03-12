@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MyPageView from '@/views/MyPageView.vue';
 import PostCreateView from '@/components/posts/PostCreateView.vue';
-import PostListView from '@/views/posts/PostListView.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
+import PostListView from '@/views/posts/PostListView.vue';
 
 const routes = [
 	{
