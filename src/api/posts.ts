@@ -5,7 +5,7 @@ export function getPosts(): Promise<FetchPostsResponse> {
 	return axios.get<Post[]>('http://localhost:4000/posts');
 }
 
-export function getPostById(id) {
+export function getPostById(id: string) {
 	return axios.get(`http://localhost:4000/posts/${id}`);
 }
 

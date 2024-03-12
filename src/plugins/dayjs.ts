@@ -1,7 +1,8 @@
+import type { App } from 'vue';
 import dayjs from 'dayjs';
 
 export default {
-	install(app) {
+	install(app: App) {
 		app.config.globalProperties.$dayjs = dayjs;
 		app.provide('dayjs', dayjs);
 	},
