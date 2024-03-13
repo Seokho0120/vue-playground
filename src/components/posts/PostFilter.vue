@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
-import { useDebounce } from '@/hooks/useDebounce';
+import { ref, watch } from 'vue';
 
-const props = defineProps({
+defineProps({
 	title: String,
 });
 
 const emit = defineEmits(['update:title']);
+const searchText = ref<string>('');
 
-const title = ref<string>(props.title!);
+const changeTitle = (e: Event) => {
+	const target = e.target as HTMLInputElement;
+	searchText.value = target.value;
+};
 
-const debouncedTitle = computed(() => useDebounce(title.value));
-
-watch(debouncedTitle, newValue => {
-	emit('update:title', newValue.value);
+watch(searchText, newValue => {
+	emit('update:title', newValue);
 });
 </script>
 
@@ -40,7 +41,8 @@ watch(debouncedTitle, newValue => {
 				</svg>
 			</div>
 			<input
-				v-model="title"
+				:value="title"
+				@input="changeTitle"
 				placeholder="Search for Tasks Title"
 				type="text"
 				class="block w-full p-2 pl-10 text-sm rounded-xl bg-gray-100"
