@@ -1,46 +1,18 @@
 {
   "posts": [
     {
-      "id": "0",
-      "title": "Personal Study",
-      "content": "Creating a to-do list using vue3 Refactoring the code after completing UI and functional implementation",
-      "createdAt": 1708997094188,
-      "category": "Personal"
-    },
-    {
-      "id": "1",
-      "title": "asdasd",
-      "content": "asdasd",
-      "category": "Personal",
-      "createdAt": 1710257820871
-    },
-    {
-      "id": "b38f",
-      "title": "zxvc",
-      "content": "zxcv",
-      "category": "Study",
-      "createdAt": 1710258244736
-    },
-    {
-      "id": "af3c",
-      "title": "testes",
-      "content": "testset",
-      "category": "Other",
-      "createdAt": 1710258256985
-    },
-    {
-      "id": "4853",
+      "id": "e612",
       "title": "test",
       "content": "test",
-      "category": "Study",
-      "createdAt": 1710263641725
+      "category": "Work",
+      "createdAt": 1710344501062
     },
     {
-      "id": "64eb",
-      "title": "tttt",
-      "content": "tttt",
-      "category": "Health",
-      "createdAt": 1710263650252
+      "id": "2421",
+      "title": "테스트",
+      "content": "ㅌㅌㅌㅌ",
+      "category": "Personal",
+      "createdAt": 1710344555894
     }
   ]
 }

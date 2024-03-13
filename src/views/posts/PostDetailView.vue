@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { getPostById } from '@/api/posts';
+import { deletePosts, getPostById } from '@/api/posts';
 import type { Post } from '@/types/posts';
+import router from '@/router';
 
 const route = useRoute();
 const postId = route.params.id as string;
@@ -42,6 +43,15 @@ const categoryColor = computed(() => {
 
 	return colors[post.value.category as keyof typeof colors] || 'bg-blue-100';
 });
+
+const removeTask = async () => {
+	try {
+		await deletePosts(postId);
+		router.push({ name: 'PostList' });
+	} catch (err) {
+		console.error(err);
+	}
+};
 </script>
 
 <template>
@@ -76,6 +86,15 @@ const categoryColor = computed(() => {
 			<div class="flex flex-col gap-2">
 				<p class="font-bold">Description</p>
 				<p>{{ post.content }}</p>
+			</div>
+
+			<div class="flex items-center gap-2 mt-8">
+				<button
+					@click="removeTask"
+					class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
+				>
+					Delete
+				</button>
 			</div>
 		</div>
 	</div>

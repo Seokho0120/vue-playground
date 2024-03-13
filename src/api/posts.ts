@@ -21,6 +21,6 @@ export function createPosts(data: Post) {
 // 	return axios.patch(`http://localhost:4000/posts/${id}`, data);
 // }
 
-// export function deletePosts(id) {
-// 	return axios.delete(`http://localhost:4000/posts/${id}`);
-// }
+export function deletePosts(id: string) {
+	return axios.delete(`http://localhost:4000/posts/${id}`);
+}
