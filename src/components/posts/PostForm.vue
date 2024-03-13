@@ -1,29 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-const CATEGORIES = [
-	{
-		name: 'Personal',
-		id: 1,
-	},
-	{
-		name: 'Work',
-		id: 2,
-	},
-	{
-		name: 'Study',
-		id: 3,
-	},
-	{
-		name: 'Health',
-		id: 4,
-	},
-	{
-		name: 'Other',
-		id: 5,
-	},
-];
+import { ref, watch } from 'vue';
+import { categories } from '@/constants/categories';
 
-defineProps({
+const props = defineProps({
 	title: String,
 	content: String,
 	category: String,
@@ -31,14 +10,24 @@ defineProps({
 
 const emit = defineEmits(['update:title', 'update:content', 'update:category']);
 
-let selectedCategory = ref('');
+const selectedCategory = ref(props.category);
 
-const selectCategory = category => {
+watch(selectedCategory, newValue => {
+	emit('update:category', newValue);
+});
+
+watch(
+	() => props.category,
+	newValue => {
+		selectedCategory.value = newValue;
+	},
+);
+
+const selectCategory = (category: string) => {
 	selectedCategory.value = category;
-	emit('update:category', category);
 };
 
-const getCategoryColor = (category, selected = false) => {
+const getCategoryColor = (category: string, selected = false) => {
 	const colors = {
 		Personal: selected
 			? 'bg-blue-200 text-blue-1000'
@@ -56,7 +45,7 @@ const getCategoryColor = (category, selected = false) => {
 	};
 
 	return (
-		colors[category] ||
+		colors[category as keyof typeof colors] ||
 		(colors ? 'bg-blue-200 text-blue-1000' : 'bg-blue-100 text-blue-800')
 	);
 };
@@ -68,7 +57,9 @@ const getCategoryColor = (category, selected = false) => {
 			<label for="title" class="text-2xl font-bold pb-4">Taks Name</label>
 			<input
 				:value="title"
-				@input="$emit('update:title', $event.target.value)"
+				@input="
+					$emit('update:title', ($event.target as HTMLInputElement).value)
+				"
 				type="text"
 				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
 				placeholder="Title"
@@ -81,7 +72,9 @@ const getCategoryColor = (category, selected = false) => {
 			<label for="content" class="text-2xl font-bold pb-4">Description</label>
 			<textarea
 				:value="content"
-				@input="$emit('update:content', $event.target.value)"
+				@input="
+					$emit('update:content', ($event.target as HTMLInputElement).value)
+				"
 				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
 				placeholder="Content"
 				id="content"
@@ -93,7 +86,7 @@ const getCategoryColor = (category, selected = false) => {
 			<label class="text-2xl font-bold pb-4">Category</label>
 			<div class="flex flex-wrap gap-3">
 				<div
-					v-for="category in CATEGORIES"
+					v-for="category in categories"
 					:key="category.id"
 					class="flex items-center gap-2"
 				>

@@ -52,6 +52,10 @@ const removeTask = async () => {
 		console.error(err);
 	}
 };
+
+const goEditPage = () => {
+	router.push({ name: 'PostEdit', params: { id: postId } });
+};
 </script>
 
 <template>
@@ -89,6 +93,12 @@ const removeTask = async () => {
 			</div>
 
 			<div class="flex items-center gap-2 mt-8">
+				<button
+					@click="goEditPage"
+					class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
+				>
+					Edit
+				</button>
 				<button
 					@click="removeTask"
 					class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"

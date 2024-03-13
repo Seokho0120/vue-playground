@@ -1,4 +1,4 @@
-import type { FetchPostsResponse, Post } from '@/types/posts';
+import type { FetchPostsResponse, Post, Form } from '@/types/posts';
 import axios from 'axios';
 
 export function getPosts(): Promise<FetchPostsResponse> {
@@ -17,9 +17,9 @@ export function createPosts(data: Post) {
 	return axios.post('http://localhost:4000/posts', data);
 }
 
-// export function updatePosts(id, data) {
-// 	return axios.patch(`http://localhost:4000/posts/${id}`, data);
-// }
+export function updatePost(id: string, data: Form) {
+	return axios.patch(`http://localhost:4000/posts/${id}`, data);
+}
 
 export function deletePosts(id: string) {
 	return axios.delete(`http://localhost:4000/posts/${id}`);
