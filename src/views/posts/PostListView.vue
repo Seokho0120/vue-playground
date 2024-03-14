@@ -51,6 +51,10 @@ const goToWrite = () => {
 </script>
 
 <template>
+	<div v-if="$route.path === '/'" class="flex items-center">
+		<RouterLink to="/table" class="text-[#ee3914]">Table &gt;</RouterLink>
+	</div>
+
 	<PostFilter :title="title" @update:title="title = $event" />
 
 	<div class="flex items-center justify-between">
@@ -58,7 +62,7 @@ const goToWrite = () => {
 			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
 		</div>
 
-		<div class="flex item-center pb-4">
+		<div class="flex pb-4 gap-4">
 			<h2 class="text-3xl font-bold">Tasks</h2>
 		</div>
 

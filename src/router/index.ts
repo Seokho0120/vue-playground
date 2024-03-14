@@ -4,6 +4,7 @@ import PostCreateView from '@/components/posts/PostCreateView.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
 import PostListView from '@/views/posts/PostListView.vue';
+import TableListView from '@/views/tables/TableListView.vue';
 
 const routes = [
 	{
@@ -35,6 +36,11 @@ const routes = [
 		path: '/mypage',
 		name: 'MyPage',
 		component: MyPageView,
+	},
+	{
+		path: '/table',
+		name: 'TableList',
+		component: TableListView,
 	},
 ];
 
