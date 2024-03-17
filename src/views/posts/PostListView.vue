@@ -74,7 +74,7 @@ const goToWrite = () => {
 		</div>
 	</div>
 
-	<div class="grid grid-cols-2 gap-4 relative">
+	<div class="grid grid-cols-4 gap-4 relative">
 		<div
 			v-for="{ id, category, content, createdAt, title } in filteredPosts"
 			:key="id"

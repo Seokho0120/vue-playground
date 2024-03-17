@@ -8,13 +8,6 @@
       "createdAt": 1710344501062
     },
     {
-      "id": "2421",
-      "title": "999",
-      "content": "999",
-      "category": "Personal",
-      "createdAt": 1710344555894
-    },
-    {
       "id": "70b5",
       "title": "수정하자~",
       "content": "수정하자~수정하자~수정하자~",
@@ -34,13 +27,6 @@
       "content": "kk2kk2",
       "category": "Personal",
       "createdAt": 1710426116120
-    },
-    {
-      "id": "b1b4",
-      "title": "수정하기22",
-      "content": "수정하기22",
-      "category": "Health",
-      "createdAt": 1710426302655
     }
   ]
 }
