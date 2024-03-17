@@ -12,6 +12,7 @@
     "db": "json-server --watch db.json --port 4000"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.1.1",
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
     "pinia": "^2.1.7",

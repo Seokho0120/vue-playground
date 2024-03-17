@@ -43,11 +43,11 @@ const filteredPosts = computed(() => {
 	);
 });
 
-const goToWrite = () => {
-	router.push({
-		name: 'PostCreate',
-	});
-};
+// const goToWrite = () => {
+// 	router.push({
+// 		name: 'PostCreate',
+// 	});
+// };
 </script>
 
 <template>
@@ -90,13 +90,13 @@ const goToWrite = () => {
 		</div>
 	</div>
 
-	<button
+	<!-- <button
 		@click="goToWrite"
 		type="button"
 		class="right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-full"
 	>
 		<span>+</span>
-	</button>
+	</button> -->
 </template>
 
 <style scoped></style>

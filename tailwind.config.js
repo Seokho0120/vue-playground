@@ -7,6 +7,7 @@ export default {
 				'custom-bg': '#f4f4f4',
 				'custom-red': '#ee3914',
 				'custom-background': '#cce3f3',
+				customMain: '#4d3be5',
 			},
 		},
 	},

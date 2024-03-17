@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { TableCellsIcon, Squares2X2Icon } from '@heroicons/vue/24/solid';
 
 // import { useCounterStore } from '@/stores/couter';
 // import { storeToRefs } from 'pinia';
@@ -8,9 +9,9 @@ import { RouterLink } from 'vue-router';
 // const { counter } = storeToRefs(counterStore);
 
 const NAVLIST = [
-	{ name: 'CARD', to: '/posts' },
-	{ name: 'TABLE', to: '/table' },
-	{ name: 'BOARD', to: '/board' },
+	{ icon: Squares2X2Icon, to: '/posts' },
+	{ icon: TableCellsIcon, to: '/table' },
+	{ icon: null, to: '/board' },
 ];
 </script>
 
@@ -33,11 +34,13 @@ const NAVLIST = [
 		<div class="flex flex-col items-center gap-4">
 			<p class="text-xs font-semibold text-gray-400">MENU</p>
 			<div v-for="(navItem, idx) in NAVLIST" :key="idx">
-				<RouterLink
-					:to="navItem.to"
-					class="rounded-xl p-2 text-gray-600 hover:bg-[#4d3be5] hover:text-white"
-					>{{ navItem.name }}</RouterLink
-				>
+				<RouterLink :to="navItem.to" class="rounded-xl text-gray-500">
+					<component
+						:is="navItem.icon"
+						class="p-2 h-10 w-10 justify-center items-center rounded-full hover:bg-customMain hover:text-white"
+						v-if="navItem.icon"
+					/>
+				</RouterLink>
 			</div>
 		</div>
 
