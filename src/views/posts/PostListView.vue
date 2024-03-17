@@ -93,7 +93,7 @@ const goToWrite = () => {
 	<button
 		@click="goToWrite"
 		type="button"
-		class="absolute right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-full"
+		class="right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-full"
 	>
 		<span>+</span>
 	</button>
