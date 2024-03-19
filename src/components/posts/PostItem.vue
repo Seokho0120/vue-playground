@@ -15,6 +15,9 @@ const props = defineProps({
 	category: {
 		type: String,
 	},
+	status: {
+		type: String,
+	},
 });
 
 const categoryColor = computed(() => {
@@ -31,7 +34,8 @@ const categoryColor = computed(() => {
 </script>
 
 <template>
-	<!-- <div class="h-full">
+	<!-- 이미지 
+		<div class="h-full">
 			<img
 				class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
 				src="../../assets/posts/best-react-practices.png"
@@ -39,7 +43,7 @@ const categoryColor = computed(() => {
 			/>
 		</div> -->
 	<div
-		class="flex flex-col bg-white border border-gray-100 rounded-lg shadow hover:bg-gray-100"
+		class="w-full flex flex-col bg-white border border-gray-100 rounded-lg shadow hover:bg-gray-100"
 	>
 		<div class="flex flex-col justify-between p-4">
 			<div class="pb-4">

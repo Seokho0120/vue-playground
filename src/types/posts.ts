@@ -4,6 +4,7 @@ export interface Post {
 	createdAt: number;
 	id?: string;
 	category: string;
+	status: string;
 }
 
 export interface FetchPostsResponse {

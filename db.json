@@ -2,53 +2,59 @@
   "posts": [
     {
       "id": "e612",
-      "title": "수정666",
-      "content": "수정666",
+      "title": "NEW1",
+      "content": "NEW1",
       "category": "Work",
+      "status": "New",
       "createdAt": 1710344501062
     },
     {
       "id": "70b5",
-      "title": "수정하자~",
-      "content": "수정하자~수정하자~수정하자~",
+      "title": "NEW2",
+      "content": "NEW2",
       "category": "Health",
+      "status": "New",
       "createdAt": 1710345064347
     },
     {
+      "id": "4as6",
+      "title": "NEW3",
+      "content": "NEW3",
+      "category": "Personal",
+      "status": "New",
+      "createdAt": 1710426116120
+    },
+    {
       "id": "56c9",
-      "title": "수정123",
-      "content": "수정123",
+      "title": "In Progress",
+      "content": "In Progress",
       "category": "Study",
+      "status": "In Progress",
       "createdAt": 1710345074348
     },
     {
       "id": "4ae6",
-      "title": "kk2kk2",
-      "content": "kk2kk2",
+      "title": "In Progress22",
+      "content": "In Progress22",
       "category": "Personal",
+      "status": "In Progress",
       "createdAt": 1710426116120
     },
     {
       "id": "123b5",
-      "title": "수정zzz",
-      "content": "수정zzzzz",
+      "title": "DONE111",
+      "content": "DONE111",
       "category": "Health",
+      "status": "Done",
       "createdAt": 1710345064347
     },
     {
       "id": "56e9",
-      "title": "수정456",
-      "content": "수정1456",
+      "title": "DONE222",
+      "content": "DONE222",
       "category": "Study",
+      "status": "Done",
       "createdAt": 1710345074348
-    },
-    {
-      "id": "4as6",
-      "title": "kk33",
-      "content": "kk33",
-      "category": "Personal",
-      "createdAt": 1710426116120
     }
-    
   ]
 }
