@@ -19,7 +19,7 @@ watch(searchText, newValue => {
 </script>
 
 <template>
-	<form @submit.prevent class="pb-6 py-2">
+	<form @submit.prevent class="">
 		<div class="relative">
 			<div
 				class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"

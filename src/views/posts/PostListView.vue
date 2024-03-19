@@ -51,27 +51,24 @@ const filteredPosts = computed(() => {
 </script>
 
 <template>
-	<div v-if="$route.path === '/'" class="flex items-center">
+	<!-- <div v-if="$route.path === '/'" class="flex items-center">
 		<RouterLink to="/table" class="text-[#ee3914]">Table &gt;</RouterLink>
-	</div>
+	</div> -->
 
-	<PostFilter :title="title" @update:title="title = $event" />
-
-	<div class="flex items-center justify-between">
-		<div v-if="$route.path !== '/'" class="flex items-center">
+	<div class="flex items-center justify-between py-4 gap-2">
+		<!-- <div v-if="$route.path !== '/'" class="flex items-center">
 			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
-		</div>
+		</div> -->
 
-		<div class="flex pb-4 gap-4">
-			<h2 class="text-3xl font-bold">Tasks</h2>
-		</div>
+		<h2 class="text-3xl font-bold">Tasks</h2>
+		<PostFilter :title="title" @update:title="title = $event" class="w-1/3" />
 
-		<div
+		<!-- <div
 			class="flex items-center"
 			:class="{ invisible: $route.path === '/posts' }"
 		>
 			<RouterLink to="/posts" class="text-[#ee3914]">See All &gt;</RouterLink>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="grid grid-cols-4 gap-4 relative">
