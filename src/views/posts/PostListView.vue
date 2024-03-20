@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-// import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
@@ -10,26 +9,17 @@ import { getPosts } from '@/api/posts';
 import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
 
-// const router = useRouter();
 const posts = ref<Post[]>([]);
+const selectedPost = ref<Post | null>(null);
+const showModal = ref<boolean>(false);
 const status = ref({
 	newStatus: 'New',
 	progressStatus: 'In Progress',
 	doneStatus: 'Done',
 });
 const title = ref<string>('');
-const showModal = ref<boolean>(false);
 const counterStore = useCounterStore();
 const { counter } = storeToRefs(counterStore);
-
-// const goPage = (id: string) => {
-// 	router.push({
-// 		name: 'PostDetail',
-// 		params: {
-// 			id,
-// 		},
-// 	});
-// };
 
 const fetchPosts = async () => {
 	try {
@@ -54,6 +44,10 @@ const filteredDonePosts = computed(() =>
 	posts.value.filter(post => post.status === 'Done'),
 );
 
+const openModal = (post: Post) => {
+	selectedPost.value = post;
+	showModal.value = !showModal.value;
+};
 // const filteredPosts = computed(() => {
 // 	if (!title.value) {
 // 		return posts.value;
@@ -70,10 +64,6 @@ const filteredDonePosts = computed(() =>
 // 		name: 'PostCreate',
 // 	});
 // };
-
-const openModal = () => {
-	showModal.value = !showModal.value;
-};
 </script>
 
 <template>
@@ -102,12 +92,6 @@ const openModal = () => {
 	</div>
 
 	<div class="flex flex-col bg-gray-100 p-8 rounded-xl">
-		<!-- <span
-			class="flex items-center font-light px-4 py-1 border-[1px] border-gray-200 rounded-3xl"
-		>
-			new
-		</span> -->
-
 		<div class="grid grid-cols-3 gap-6">
 			<!-- New Posts -->
 			<div class="flex flex-col gap-4">
@@ -118,7 +102,7 @@ const openModal = () => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal"
+						@click="openModal(post)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -137,7 +121,7 @@ const openModal = () => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal"
+						@click="openModal(post)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -156,7 +140,7 @@ const openModal = () => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal"
+						@click="openModal(post)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -176,7 +160,11 @@ const openModal = () => {
 	</button> -->
 	</div>
 
-	<PostModal v-if="showModal" />
+	<PostModal
+		v-if="showModal"
+		v-model:showModal="showModal"
+		:selectedPost="selectedPost"
+	/>
 </template>
 
 <style scoped></style>
