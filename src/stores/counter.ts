@@ -7,7 +7,7 @@ export const useCounterStore = defineStore('counter', {
 	getters: {},
 	actions: {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		setCouter(value: any) {
+		setCounter(value: any) {
 			this.counter = value;
 		},
 	},

@@ -1,41 +1,41 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostHeader from '@/components/posts/PostHeader.vue';
+import PostModal from '@/components/posts/PostModal.vue';
 import { getPosts } from '@/api/posts';
-import { useCounterStore } from '@/stores/couter';
+import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
-import { CheckCircleIcon, ClockIcon } from '@heroicons/vue/24/outline';
 
-const router = useRouter();
+// const router = useRouter();
 const posts = ref<Post[]>([]);
 const status = ref({
 	newStatus: 'New',
 	progressStatus: 'In Progress',
 	doneStatus: 'Done',
 });
-
 const title = ref<string>('');
+const showModal = ref<boolean>(false);
 const counterStore = useCounterStore();
 const { counter } = storeToRefs(counterStore);
 
-const goPage = (id: string) => {
-	router.push({
-		name: 'PostDetail',
-		params: {
-			id,
-		},
-	});
-};
+// const goPage = (id: string) => {
+// 	router.push({
+// 		name: 'PostDetail',
+// 		params: {
+// 			id,
+// 		},
+// 	});
+// };
 
 const fetchPosts = async () => {
 	try {
 		const { data } = await getPosts();
 		posts.value = data;
-		counterStore.setCouter(data.length);
+		counterStore.setCounter(data.length);
 	} catch (err) {
 		console.error(err);
 	}
@@ -70,6 +70,10 @@ const filteredDonePosts = computed(() =>
 // 		name: 'PostCreate',
 // 	});
 // };
+
+const openModal = () => {
+	showModal.value = !showModal.value;
+};
 </script>
 
 <template>
@@ -104,8 +108,7 @@ const filteredDonePosts = computed(() =>
 			new
 		</span> -->
 
-		<!-- <div class="flex justify-between"> -->
-		<div class="grid grid-cols-3 gap-4">
+		<div class="grid grid-cols-3 gap-6">
 			<!-- New Posts -->
 			<div class="flex flex-col gap-4">
 				<PostHeader :counter="counter" :status="status.newStatus" />
@@ -115,7 +118,7 @@ const filteredDonePosts = computed(() =>
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="goPage(post.id!)"
+						@click="openModal"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -134,7 +137,7 @@ const filteredDonePosts = computed(() =>
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="goPage(post.id!)"
+						@click="openModal"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -144,7 +147,7 @@ const filteredDonePosts = computed(() =>
 				</div>
 			</div>
 
-			<!-- Done Posts -->
+			<!-- Done -->
 			<div class="flex flex-col gap-4">
 				<PostHeader :counter="counter" :status="status.doneStatus" />
 				<div
@@ -153,7 +156,7 @@ const filteredDonePosts = computed(() =>
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="goPage(post.id!)"
+						@click="openModal"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -162,29 +165,6 @@ const filteredDonePosts = computed(() =>
 					/>
 				</div>
 			</div>
-			<!-- <div class="grid grid-cols-4 gap-4 relative"> -->
-			<!-- <div class="flex flex-col gap-4">
-			<div
-				v-for="{
-					id,
-					category,
-					content,
-					createdAt,
-					title,
-					status,
-				} in filteredPosts"
-				:key="id"
-				class="w-full cursor-pointer"
-			>
-				<PostItem
-					@click="goPage(id!)"
-					:title="title"
-					:content="content"
-					:created-at="createdAt"
-					:category="category"
-				/>
-			</div>
-		</div> -->
 		</div>
 
 		<!-- <button
@@ -195,6 +175,9 @@ const filteredDonePosts = computed(() =>
 		<span>+</span>
 	</button> -->
 	</div>
+
+	<PostModal v-if="showModal" />
 </template>
 
 <style scoped></style>
+@/stores/counter

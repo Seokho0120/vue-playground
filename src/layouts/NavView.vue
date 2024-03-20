@@ -2,12 +2,6 @@
 import { RouterLink } from 'vue-router';
 import { TableCellsIcon, Squares2X2Icon } from '@heroicons/vue/24/solid';
 
-// import { useCounterStore } from '@/stores/couter';
-// import { storeToRefs } from 'pinia';
-
-// const counterStore = useCounterStore();
-// const { counter } = storeToRefs(counterStore);
-
 const NAVLIST = [
 	{ icon: Squares2X2Icon, to: '/posts' },
 	{ icon: TableCellsIcon, to: '/table' },
@@ -18,8 +12,6 @@ const NAVLIST = [
 <template>
 	<nav class="flex flex-col items-center bg-gray-100 rounded-xl p-4">
 		<div class="border-b-2 pb-4 mb-4">
-			<!-- <RouterLink class="text-3xl font-bold" to="/">Hey, River!</RouterLink> -->
-
 			<div class="rounded-full w-16 h-16 overflow-hidden">
 				<RouterLink to="/mypage">
 					<img
@@ -43,13 +35,6 @@ const NAVLIST = [
 				</RouterLink>
 			</div>
 		</div>
-
-		<!-- <div class="flex gap-1">
-			<p class="font-bold text-custom-red">
-				{{ counter }}
-			</p>
-			Tasks today!
-		</div> -->
 	</nav>
 </template>
 

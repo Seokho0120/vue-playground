@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 
-defineProps({
-	title: String,
-});
+defineProps<{
+	title: string;
+}>();
 
 const emit = defineEmits(['update:title']);
 const searchText = ref<string>('');
