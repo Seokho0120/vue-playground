@@ -2,10 +2,9 @@
 import { RouterLink } from 'vue-router';
 import { TableCellsIcon, Squares2X2Icon } from '@heroicons/vue/24/solid';
 
-const NAVLIST = [
+const NAV_LIST = [
 	{ icon: Squares2X2Icon, to: '/posts' },
 	{ icon: TableCellsIcon, to: '/table' },
-	{ icon: null, to: '/board' },
 ];
 </script>
 
@@ -25,7 +24,7 @@ const NAVLIST = [
 
 		<div class="flex flex-col items-center gap-4">
 			<p class="text-xs font-semibold text-gray-400">MENU</p>
-			<div v-for="(navItem, idx) in NAVLIST" :key="idx">
+			<div v-for="(navItem, idx) in NAV_LIST" :key="idx">
 				<RouterLink :to="navItem.to" class="rounded-xl text-gray-500">
 					<component
 						:is="navItem.icon"

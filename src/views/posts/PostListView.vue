@@ -48,6 +48,7 @@ const openModal = (post: Post) => {
 	selectedPost.value = post;
 	showModal.value = !showModal.value;
 };
+
 // const filteredPosts = computed(() => {
 // 	if (!title.value) {
 // 		return posts.value;
@@ -67,28 +68,13 @@ const openModal = (post: Post) => {
 </script>
 
 <template>
-	<!-- <div v-if="$route.path === '/'" class="flex items-center">
-		<RouterLink to="/table" class="text-[#ee3914]">Table &gt;</RouterLink>
-	</div> -->
-
 	<div class="flex items-center justify-between py-4 gap-2">
-		<!-- <div v-if="$route.path !== '/'" class="flex items-center">
-			<RouterLink to="/" class="text-[#ee3914]">&lt; Prev</RouterLink>
-		</div> -->
-
 		<h2 class="text-3xl font-bold">Tasks</h2>
 		<PostFilter
 			:title="title"
 			@update:title="title = $event"
 			class="w-[320px]"
 		/>
-
-		<!-- <div
-			class="flex items-center"
-			:class="{ invisible: $route.path === '/posts' }"
-		>
-			<RouterLink to="/posts" class="text-[#ee3914]">See All &gt;</RouterLink>
-		</div> -->
 	</div>
 
 	<div class="flex flex-col bg-gray-100 p-8 rounded-xl">
@@ -168,4 +154,3 @@ const openModal = (post: Post) => {
 </template>
 
 <style scoped></style>
-@/stores/counter
