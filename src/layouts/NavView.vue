@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 import { TableCellsIcon, Squares2X2Icon } from '@heroicons/vue/24/solid';
 
 const NAV_LIST = [
-	{ icon: Squares2X2Icon, to: '/posts' },
+	{ icon: Squares2X2Icon, to: '/' },
 	{ icon: TableCellsIcon, to: '/table' },
 ];
 </script>

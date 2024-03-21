@@ -11,11 +11,11 @@ const routes = [
 		name: 'Home',
 		component: PostListView,
 	},
-	{
-		path: '/posts',
-		name: 'PostList',
-		component: PostListView,
-	},
+	// {
+	// 	path: '/posts',
+	// 	name: 'PostList',
+	// 	component: PostListView,
+	// },
 	{
 		path: '/posts/:id',
 		name: 'PostDetail',

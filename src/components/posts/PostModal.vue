@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { XMarkIcon } from '@heroicons/vue/24/solid';
+// import { deletePosts } from '@/api/posts';
+// import router from '@/router';
 
 const props = defineProps<{
 	showModal: boolean;
@@ -9,10 +12,11 @@ const props = defineProps<{
 		createdAt: number;
 		category: string;
 		status: string;
+		id?: string;
 	} | null;
 }>();
 
-const emit = defineEmits(['update:showModal']);
+const emit = defineEmits(['update:showModal', 'deleteTask']);
 
 const closeModal = () => emit('update:showModal', false);
 
@@ -29,6 +33,10 @@ const categoryColor = computed(() => {
 		colors[props.selectedPost?.category as keyof typeof colors] || 'bg-blue-100'
 	);
 });
+
+const removeTask = () => {
+	emit('deleteTask', props.selectedPost?.id);
+};
 </script>
 
 <template>
@@ -38,12 +46,12 @@ const categoryColor = computed(() => {
 		<div class="w-1/3 m-4 bg-white p-8 rounded-lg shadow-lg">
 			<h2 class="font-bold text-xl mb-4">{{ selectedPost?.title }}</h2>
 			<p>{{ selectedPost?.content }}</p>
-			<button
+			<!-- <button
 				@click="closeModal"
 				class="mt-4 py-2 px-4 bg-red-500 text-white font-bold rounded"
 			>
 				Close
-			</button>
+			</button> -->
 		</div>
 	</div>
 
@@ -53,16 +61,21 @@ const categoryColor = computed(() => {
 		<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
 			<div class="flex items-center justify-between pb-4">
 				<h2 class="text-3xl font-bold">{{ selectedPost?.title }}</h2>
-				<span
-					:class="{
-						'bg-[#33ca25]': selectedPost?.status === 'New',
-						'bg-[#6433ca]': selectedPost?.status === 'In Progress',
-						'bg-[#ac4cdc]': selectedPost?.status === 'Done',
-					}"
-					class="text-sm px-4 py-1 rounded-3xl text-white"
-				>
-					{{ selectedPost?.status }}
-				</span>
+				<div class="flex items-center gap-4">
+					<span
+						:class="{
+							'bg-[#33ca25]': selectedPost?.status === 'New',
+							'bg-[#6433ca]': selectedPost?.status === 'In Progress',
+							'bg-[#ac4cdc]': selectedPost?.status === 'Done',
+						}"
+						class="text-sm px-4 py-1 rounded-3xl text-white"
+					>
+						{{ selectedPost?.status }}
+					</span>
+					<button @click="closeModal">
+						<XMarkIcon class="h-4 w-4" />
+					</button>
+				</div>
 			</div>
 
 			<div class="flex flex-col gap-4">
@@ -89,22 +102,16 @@ const categoryColor = computed(() => {
 
 				<div class="flex items-center gap-2 mt-8">
 					<button
-						@click="closeModal"
-						class="mt-4 py-2 px-4 bg-red-500 text-white font-bold rounded"
-					>
-						Close
-					</button>
-
-					<!-- <button
 						class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
 					>
 						Edit
 					</button>
 					<button
+						@click="removeTask"
 						class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
 					>
 						Delete
-					</button> -->
+					</button>
 				</div>
 			</div>
 		</div>

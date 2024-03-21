@@ -5,7 +5,7 @@ import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostHeader from '@/components/posts/PostHeader.vue';
 import PostModal from '@/components/posts/PostModal.vue';
-import { getPosts } from '@/api/posts';
+import { deletePosts, getPosts } from '@/api/posts';
 import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
 
@@ -47,6 +47,12 @@ const filteredDonePosts = computed(() =>
 const openModal = (post: Post) => {
 	selectedPost.value = post;
 	showModal.value = !showModal.value;
+};
+
+const deleteTask = async (postId: string) => {
+	await deletePosts(postId);
+	posts.value = posts.value.filter(post => post.id !== postId);
+	showModal.value = false;
 };
 
 // const filteredPosts = computed(() => {
@@ -150,6 +156,7 @@ const openModal = (post: Post) => {
 		v-if="showModal"
 		v-model:showModal="showModal"
 		:selectedPost="selectedPost"
+		@deleteTask="deleteTask"
 	/>
 </template>
 

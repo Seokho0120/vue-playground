@@ -1,28 +1,12 @@
 {
   "posts": [
     {
-      "id": "e612",
-      "title": "NEW1",
-      "content": "NEW1",
-      "category": "Work",
-      "status": "New",
-      "createdAt": 1710344501062
-    },
-    {
       "id": "70b5",
       "title": "NEW2",
       "content": "NEW2",
       "category": "Health",
       "status": "New",
       "createdAt": 1710345064347
-    },
-    {
-      "id": "4as6",
-      "title": "NEW3",
-      "content": "NEW3",
-      "category": "Personal",
-      "status": "New",
-      "createdAt": 1710426116120
     },
     {
       "id": "56c9",
@@ -33,14 +17,6 @@
       "createdAt": 1710345074348
     },
     {
-      "id": "4ae6",
-      "title": "In Progress22",
-      "content": "In Progress22",
-      "category": "Personal",
-      "status": "In Progress",
-      "createdAt": 1710426116120
-    },
-    {
       "id": "123b5",
       "title": "DONE111",
       "content": "DONE111",
@@ -49,12 +25,20 @@
       "createdAt": 1710345064347
     },
     {
-      "id": "56e9",
-      "title": "DONE222",
-      "content": "DONE222",
+      "id": "52c9",
+      "title": "In Progress",
+      "content": "In Progress",
       "category": "Study",
-      "status": "Done",
+      "status": "In Progress",
       "createdAt": 1710345074348
+    },
+    {
+      "id": "80b5",
+      "title": "제목제목제목제목제목제목제목제목",
+      "content": "내용내용내용내용내용",
+      "category": "Health",
+      "status": "New",
+      "createdAt": 1710345064347
     }
   ]
 }
