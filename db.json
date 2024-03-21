@@ -23,22 +23,6 @@
       "category": "Health",
       "status": "Done",
       "createdAt": 1710345064347
-    },
-    {
-      "id": "52c9",
-      "title": "In Progress",
-      "content": "In Progress",
-      "category": "Study",
-      "status": "In Progress",
-      "createdAt": 1710345074348
-    },
-    {
-      "id": "80b5",
-      "title": "제목제목제목제목제목제목제목제목",
-      "content": "내용내용내용내용내용",
-      "category": "Health",
-      "status": "New",
-      "createdAt": 1710345064347
     }
   ]
 }

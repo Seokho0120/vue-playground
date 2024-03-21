@@ -7,21 +7,21 @@ import {
 	ChevronDownIcon,
 } from '@heroicons/vue/24/solid';
 
-const goToWrite = () => {
+const createTask = () => {
 	router.push({
 		name: 'PostCreate',
 	});
 };
 
-const NAVLIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
+const NAV_LIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
 </script>
 
 <template>
 	<nav class="flex justify-between border-b-2 pb-7 pt-8">
 		<!-- <div class="border-b-2 pb-7 pt-8"> -->
-		<RouterLink to="/" class="flex items-center gap-2">
+		<div class="flex items-center gap-2">
 			<!-- <p class="text-3xl font-bold">Hey, River!</p> -->
-			<!-- <button @click="goToWrite" type="button" class="bg-gray-400 gap-3">
+			<!-- <button @click="createTask" type="button" class="bg-gray-400 gap-3">
 				<div>+</div>
 				<div>Create</div>
 			</button> -->
@@ -49,7 +49,7 @@ const NAVLIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
 			</button>
 
 			<button
-				@click="goToWrite"
+				@click="createTask"
 				type="button"
 				class="flex items-center justify-center text-white font-light bg-customMain hover:bg-hoverCustomMain gap-2 ml-4 px-4 py-1 rounded-3xl"
 			>
@@ -57,10 +57,10 @@ const NAVLIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
 				<p class="text-sm font-thin">|</p>
 				<span class="text-sm font-medium">Create</span>
 			</button>
-		</RouterLink>
+		</div>
 
 		<div class="flex items-center gap-2">
-			<div v-for="(navItem, idx) in NAVLIST" :key="idx">
+			<div v-for="(navItem, idx) in NAV_LIST" :key="idx">
 				<component
 					:is="navItem.icon"
 					class="p-2 h-10 w-10 justify-center items-center rounded-full text-gray-500 bg-gray-100 hover:bg-customMain hover:text-white cursor-pointer"
