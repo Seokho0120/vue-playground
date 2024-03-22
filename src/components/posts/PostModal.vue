@@ -1,27 +1,44 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
-// import { deletePosts } from '@/api/posts';
+import PostForm from './PostForm.vue';
+import { Form, Post } from '@/types/posts';
+import { updatePost } from '@/api/posts';
 // import router from '@/router';
 
+const showEdit = ref<boolean>(false);
+const form = ref<Form>({
+	title: '',
+	content: '',
+	category: '',
+	status: '',
+});
+
 const props = defineProps<{
-	showModal: boolean;
-	selectedPost: {
-		title: string;
-		content: string;
-		createdAt: number;
-		category: string;
-		status: string;
-		id?: string;
-	} | null;
+	selectedPost: Post;
 }>();
 
-const emit = defineEmits(['update:showModal', 'deleteTask']);
+const { selectedPost } = props;
+
+watch(
+	() => selectedPost,
+	newVal => {
+		if (newVal) {
+			form.value.title = newVal.title;
+			form.value.content = newVal.content;
+			form.value.category = newVal.category;
+			form.value.status = newVal.status;
+		}
+	},
+	{ immediate: true },
+);
+
+const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
 
 const closeModal = () => emit('update:showModal', false);
 
 const categoryColor = computed(() => {
-	const colors = {
+	const colors: Record<string, string> = {
 		Personal: 'bg-blue-100 text-blue-800',
 		Work: 'bg-green-100 text-green-800',
 		Study: 'bg-yellow-100 text-yellow-800',
@@ -29,37 +46,57 @@ const categoryColor = computed(() => {
 		Other: 'bg-gray-100 text-gray-800',
 	};
 
-	return (
-		colors[props.selectedPost?.category as keyof typeof colors] || 'bg-blue-100'
-	);
+	return selectedPost?.category
+		? colors[selectedPost?.category] || 'bg-blue-100'
+		: 'bg-blue-100';
 });
 
 const removeTask = () => {
-	emit('deleteTask', props.selectedPost?.id);
+	if (selectedPost?.id) {
+		emit('deleteTask', selectedPost?.id);
+	}
+};
+
+const editTable = () => {
+	showEdit.value = true;
+};
+
+const editTask = async () => {
+	if (!selectedPost.id) return;
+
+	try {
+		const { status } = await updatePost(selectedPost.id, { ...form.value });
+		if (status === 200) {
+			// await fetchPost();
+			emit('updateSuccess');
+			showEdit.value = false;
+		}
+	} catch (error) {
+		console.error('error', error);
+	}
+
+	// try {
+	// 	await updatePost(selectedPost.id, { ...form.value });
+	// 	showEdit.value = false;
+	// 	// closeModal();
+	// } catch (error) {
+	// 	console.error('error', error);
+	// }
 };
 </script>
 
 <template>
-	<div
+	<!-- background -->
+	<div class="w-full fixed inset-0 flex justify-center items-center">
+		<!-- <div
 		class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
-	>
-		<div class="w-1/3 m-4 bg-white p-8 rounded-lg shadow-lg">
-			<h2 class="font-bold text-xl mb-4">{{ selectedPost?.title }}</h2>
-			<p>{{ selectedPost?.content }}</p>
-			<!-- <button
-				@click="closeModal"
-				class="mt-4 py-2 px-4 bg-red-500 text-white font-bold rounded"
-			>
-				Close
-			</button> -->
-		</div>
-	</div>
-
-	<div
-		class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
-	>
+	> -->
+		<!-- container -->
 		<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
-			<div class="flex items-center justify-between pb-4">
+			<div
+				v-if="showEdit === false"
+				class="flex items-center justify-between pb-4"
+			>
 				<h2 class="text-3xl font-bold">{{ selectedPost?.title }}</h2>
 				<div class="flex items-center gap-4">
 					<span
@@ -78,7 +115,7 @@ const removeTask = () => {
 				</div>
 			</div>
 
-			<div class="flex flex-col gap-4">
+			<div v-if="showEdit === false" class="flex flex-col gap-4">
 				<div class="flex gap-4">
 					<p class="font-bold">Due Date</p>
 					<p>{{ $dayjs(selectedPost?.createdAt).format('YYYY-MM-DD') }}</p>
@@ -102,6 +139,7 @@ const removeTask = () => {
 
 				<div class="flex items-center gap-2 mt-8">
 					<button
+						@click="editTable"
 						class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
 					>
 						Edit
@@ -114,6 +152,22 @@ const removeTask = () => {
 					</button>
 				</div>
 			</div>
+
+			<PostForm
+				v-if="showEdit"
+				v-model:title="form.title"
+				v-model:content="form.content"
+				v-model:category="form.category"
+				@submit.prevent="editTask"
+			>
+				<template #actions>
+					<button
+						class="font-medium text-sm px-8 py-2.5 text-center me-2 mb-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 rounded-lg"
+					>
+						Edit
+					</button>
+				</template>
+			</PostForm>
 		</div>
 	</div>
 </template>

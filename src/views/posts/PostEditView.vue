@@ -12,6 +12,7 @@ const form = ref<Form>({
 	title: '',
 	content: '',
 	category: '',
+	status: '',
 });
 
 const fetchPost = async () => {
@@ -23,10 +24,11 @@ const fetchPost = async () => {
 	}
 };
 
-const setPost = ({ title, content, category }: Post) => {
+const setPost = ({ title, content, category, status }: Post) => {
 	form.value.title = title;
 	form.value.content = content;
 	form.value.category = category;
+	form.value.status = status;
 	// form.value.createdAt = createdAt;
 };
 fetchPost();

@@ -54,7 +54,7 @@ const getCategoryColor = (category: string, selected = false) => {
 <template>
 	<form class="flex flex-col gap-8">
 		<div class="flex flex-col">
-			<label for="title" class="text-2xl font-bold pb-4">Taks Name</label>
+			<label for="title" class="text-2xl font-bold pb-4">Task Name</label>
 			<input
 				:value="title"
 				@input="

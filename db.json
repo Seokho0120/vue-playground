@@ -1,15 +1,15 @@
 {
   "posts": [
     {
-      "id": "70b5",
-      "title": "NEW2",
-      "content": "NEW2",
-      "category": "Health",
-      "status": "New",
-      "createdAt": 1710345064347
+      "id": "56c1",
+      "title": "제목제목제목",
+      "content": "내용내용내용내용",
+      "category": "Personal",
+      "status": "In Progress",
+      "createdAt": 1710345074348
     },
     {
-      "id": "56c9",
+      "id": "56c22",
       "title": "In Progress",
       "content": "In Progress",
       "category": "Study",
@@ -18,9 +18,41 @@
     },
     {
       "id": "123b5",
-      "title": "DONE111",
+      "title": "제목제목제목",
       "content": "DONE111",
       "category": "Health",
+      "status": "Done",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "69b5",
+      "title": "되냐?ㅎㅋㅋ",
+      "content": "되냐?ㅎㅋㅋ",
+      "category": "Personal",
+      "status": "New",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "12b5",
+      "title": "ㅁㄴㅇㅁㄴㅇ",
+      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "category": "Personal",
+      "status": "New",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "941b5",
+      "title": "테스트22",
+      "content": "테스트22",
+      "category": "Health",
+      "status": "In Progress",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "941b78",
+      "title": "테스트2",
+      "content": "테스트2",
+      "category": "Personal",
       "status": "Done",
       "createdAt": 1710345064347
     }

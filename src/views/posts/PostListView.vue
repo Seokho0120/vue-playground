@@ -10,7 +10,14 @@ import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
 
 const posts = ref<Post[]>([]);
-const selectedPost = ref<Post | null>(null);
+const selectedPost = ref<Post>({
+	title: '',
+	content: '',
+	createdAt: 0,
+	id: '',
+	category: '',
+	status: '',
+});
 const showModal = ref<boolean>(false);
 const status = ref({
 	newStatus: 'New',
@@ -142,14 +149,6 @@ const deleteTask = async (postId: string) => {
 				</div>
 			</div>
 		</div>
-
-		<!-- <button
-		@click="goToWrite"
-		type="button"
-		class="right-[30%] bottom-[7%] text-4xl w-16 h-16 flex items-center justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-full"
-	>
-		<span>+</span>
-	</button> -->
 	</div>
 
 	<PostModal
@@ -157,6 +156,7 @@ const deleteTask = async (postId: string) => {
 		v-model:showModal="showModal"
 		:selectedPost="selectedPost"
 		@deleteTask="deleteTask"
+		@updateSuccess="fetchPosts"
 	/>
 </template>
 
