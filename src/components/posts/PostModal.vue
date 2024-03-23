@@ -74,23 +74,14 @@ const editTask = async () => {
 	} catch (error) {
 		console.error('error', error);
 	}
-
-	// try {
-	// 	await updatePost(selectedPost.id, { ...form.value });
-	// 	showEdit.value = false;
-	// 	// closeModal();
-	// } catch (error) {
-	// 	console.error('error', error);
-	// }
 };
 </script>
 
 <template>
 	<!-- background -->
-	<div class="w-full fixed inset-0 flex justify-center items-center">
-		<!-- <div
+	<div
 		class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
-	> -->
+	>
 		<!-- container -->
 		<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
 			<div

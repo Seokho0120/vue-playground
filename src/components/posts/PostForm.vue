@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { categories } from '@/constants/categories';
+import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 const props = defineProps({
 	title: String,
@@ -54,7 +55,12 @@ const getCategoryColor = (category: string, selected = false) => {
 <template>
 	<form class="flex flex-col gap-8">
 		<div class="flex flex-col">
-			<label for="title" class="text-2xl font-bold pb-4">Task Name</label>
+			<div class="flex items-center justify-between pb-4">
+				<label for="title" class="text-2xl font-bold">Task Name</label>
+				<button>
+					<XMarkIcon class="h-4 w-4" />
+				</button>
+			</div>
 			<input
 				:value="title"
 				@input="

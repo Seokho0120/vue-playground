@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { storeToRefs } from 'pinia';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostHeader from '@/components/posts/PostHeader.vue';
@@ -8,6 +7,7 @@ import PostModal from '@/components/posts/PostModal.vue';
 import { deletePosts, getPosts } from '@/api/posts';
 import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
+import { storeToRefs } from 'pinia';
 
 const posts = ref<Post[]>([]);
 const selectedPost = ref<Post>({
