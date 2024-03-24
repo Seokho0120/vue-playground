@@ -60,6 +60,7 @@ const deleteTask = async (postId: string) => {
 	await deletePosts(postId);
 	posts.value = posts.value.filter(post => post.id !== postId);
 	showModal.value = false;
+	fetchPosts();
 };
 
 // const filteredPosts = computed(() => {

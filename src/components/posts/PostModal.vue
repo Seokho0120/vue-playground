@@ -33,7 +33,12 @@ watch(
 	{ immediate: true },
 );
 
-const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
+const emit = defineEmits([
+	'update:showModal',
+	'deleteTask',
+	'updateSuccess',
+	'updatePostData',
+]);
 
 const closeModal = () => emit('update:showModal', false);
 
@@ -65,12 +70,9 @@ const editTask = async () => {
 	if (!selectedPost.id) return;
 
 	try {
-		const { status } = await updatePost(selectedPost.id, { ...form.value });
-		if (status === 200) {
-			// await fetchPost();
-			emit('updateSuccess');
-			showEdit.value = false;
-		}
+		await updatePost(selectedPost.id, { ...form.value });
+		showEdit.value = false;
+		// closeModal();
 	} catch (error) {
 		console.error('error', error);
 	}
