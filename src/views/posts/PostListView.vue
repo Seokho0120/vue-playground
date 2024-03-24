@@ -4,7 +4,7 @@ import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostHeader from '@/components/posts/PostHeader.vue';
 import PostModal from '@/components/posts/PostModal.vue';
-import { deletePosts, getPosts } from '@/api/posts';
+import { deletePosts, getPostById, getPosts } from '@/api/posts';
 import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
 import { storeToRefs } from 'pinia';
@@ -51,10 +51,16 @@ const filteredDonePosts = computed(() =>
 	posts.value.filter(post => post.status === 'Done'),
 );
 
-const openModal = (post: Post) => {
-	selectedPost.value = post;
+const openModal = async (id: string) => {
+	const { data } = await getPostById(id);
+	selectedPost.value = data;
 	showModal.value = !showModal.value;
 };
+
+// const openModal = (post: Post) => {
+// 	selectedPost.value = post;
+// 	showModal.value = !showModal.value;
+// };
 
 const deleteTask = async (postId: string) => {
 	await deletePosts(postId);
@@ -63,22 +69,13 @@ const deleteTask = async (postId: string) => {
 	fetchPosts();
 };
 
-// const filteredPosts = computed(() => {
-// 	if (!title.value) {
-// 		return posts.value;
-// 	}
-
-// 	// 대소문자 구분없이 검색 필터
-// 	return posts.value.filter(post =>
-// 		post.title.toLowerCase().includes(title.value.toLowerCase()),
-// 	);
-// });
-
-// const goToWrite = () => {
-// 	router.push({
-// 		name: 'PostCreate',
-// 	});
-// };
+const updatePostData = (updatedPost: Post) => {
+	console.log('updatedPost', updatedPost);
+	const postIndex = posts.value.findIndex(post => post.id === updatedPost.id);
+	if (postIndex !== -1) {
+		posts.value[postIndex] = updatedPost;
+	}
+};
 </script>
 
 <template>
@@ -102,7 +99,7 @@ const deleteTask = async (postId: string) => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal(post)"
+						@click="openModal(post.id as string)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -121,7 +118,7 @@ const deleteTask = async (postId: string) => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal(post)"
+						@click="openModal(post.id as string)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -140,7 +137,7 @@ const deleteTask = async (postId: string) => {
 					class="w-full cursor-pointer"
 				>
 					<PostItem
-						@click="openModal(post)"
+						@click="openModal(post.id as string)"
 						:title="post.title"
 						:content="post.content"
 						:created-at="post.createdAt"
@@ -158,6 +155,7 @@ const deleteTask = async (postId: string) => {
 		:selectedPost="selectedPost"
 		@deleteTask="deleteTask"
 		@updateSuccess="fetchPosts"
+		@updatePostData="updatePostData"
 	/>
 </template>
 

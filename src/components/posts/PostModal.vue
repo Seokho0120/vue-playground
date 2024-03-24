@@ -51,8 +51,8 @@ const categoryColor = computed(() => {
 		Other: 'bg-gray-100 text-gray-800',
 	};
 
-	return selectedPost?.category
-		? colors[selectedPost?.category] || 'bg-blue-100'
+	return form.value.category
+		? colors[form.value.category] || 'bg-blue-100'
 		: 'bg-blue-100';
 });
 
@@ -70,13 +70,21 @@ const editTask = async () => {
 	if (!selectedPost.id) return;
 
 	try {
-		await updatePost(selectedPost.id, { ...form.value });
-		showEdit.value = false;
-		// closeModal();
+		const { status, data } = await updatePost(selectedPost.id, {
+			...form.value,
+		});
+		if (status === 200) {
+			emit('updateSuccess');
+			emit('updatePostData', data);
+			showEdit.value = false;
+			// 	// closeModal();
+		}
 	} catch (error) {
 		console.error('error', error);
 	}
 };
+
+console.log('modal-selectedPost', selectedPost);
 </script>
 
 <template>
@@ -90,17 +98,19 @@ const editTask = async () => {
 				v-if="showEdit === false"
 				class="flex items-center justify-between pb-4"
 			>
-				<h2 class="text-3xl font-bold">{{ selectedPost?.title }}</h2>
+				<h2 class="text-3xl font-bold">{{ form?.title }}</h2>
+				<!-- <h2 class="text-3xl font-bold">{{ selectedPost?.title }}</h2> -->
 				<div class="flex items-center gap-4">
 					<span
 						:class="{
-							'bg-[#33ca25]': selectedPost?.status === 'New',
-							'bg-[#6433ca]': selectedPost?.status === 'In Progress',
-							'bg-[#ac4cdc]': selectedPost?.status === 'Done',
+							'bg-[#33ca25]': form?.status === 'New',
+							'bg-[#6433ca]': form?.status === 'In Progress',
+							'bg-[#ac4cdc]': form?.status === 'Done',
 						}"
 						class="text-sm px-4 py-1 rounded-3xl text-white"
 					>
-						{{ selectedPost?.status }}
+						{{ form?.status }}
+						<!-- {{ selectedPost?.status }} -->
 					</span>
 					<button @click="closeModal">
 						<XMarkIcon class="h-4 w-4" />
@@ -120,14 +130,16 @@ const editTask = async () => {
 						<span
 							:class="`${categoryColor} text-xs me-2 px-2.5 py-0.5 rounded-full`"
 						>
-							{{ selectedPost?.category }}
+							{{ form?.category }}
+							<!-- {{ selectedPost?.category }} -->
 						</span>
 					</div>
 				</div>
 
 				<div class="flex flex-col gap-2">
 					<p class="font-bold">Description</p>
-					<p>{{ selectedPost?.content }}</p>
+					<p>{{ form?.content }}</p>
+					<!-- <p>{{ selectedPost?.content }}</p> -->
 				</div>
 
 				<div class="flex items-center gap-2 mt-8">
