@@ -2,9 +2,9 @@
   "posts": [
     {
       "id": "56c1",
-      "title": "수정~",
-      "content": "수정~",
-      "category": "Work",
+      "title": "hhh",
+      "content": "hhh",
+      "category": "Health",
       "status": "In Progress",
       "createdAt": 1710345074348
     },
@@ -26,24 +26,40 @@
     },
     {
       "id": "567b5",
-      "title": "ㅁㄴㅇㅁㄴㅇ",
-      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "title": "modal open22",
+      "content": "modal open22",
       "category": "Personal",
       "status": "New",
       "createdAt": 1710345064347
     },
     {
       "id": "01b4",
-      "title": "수정이요",
-      "content": "수정이요",
-      "category": "Work",
+      "title": "수정이요22",
+      "content": "수정이요22",
+      "category": "Study",
       "status": "New",
       "createdAt": 1710345064347
     },
     {
-      "id": "941b78",
-      "title": "테스트2",
-      "content": "테스트2",
+      "id": "01b123",
+      "title": "수정이요3333",
+      "content": "수정이요3333",
+      "category": "Personal",
+      "status": "New",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "01b098",
+      "title": "수정이요4444",
+      "content": "수정이요4444",
+      "category": "Health",
+      "status": "New",
+      "createdAt": 1710345064347
+    },
+    {
+      "id": "10193b5",
+      "title": "DONE222",
+      "content": "DONE222",
       "category": "Personal",
       "status": "Done",
       "createdAt": 1710345064347

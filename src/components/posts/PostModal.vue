@@ -77,8 +77,6 @@ const editTask = async () => {
 		console.error('error', error);
 	}
 };
-
-console.log('modal-selectedPost', selectedPost);
 </script>
 
 <template>
