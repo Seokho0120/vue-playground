@@ -2,10 +2,10 @@
 import { CheckCircleIcon, ClockIcon } from '@heroicons/vue/24/outline';
 import { EllipsisHorizontalIcon } from '@heroicons/vue/24/solid';
 
-defineProps({
-	status: String,
-	counter: Number,
-});
+defineProps<{
+	status: string;
+	counter: number;
+}>();
 </script>
 
 <template>

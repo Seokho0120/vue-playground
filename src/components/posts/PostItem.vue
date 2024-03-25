@@ -1,24 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const props = defineProps({
-	title: {
-		type: String,
-		required: true,
-	},
-	content: {
-		type: String,
-	},
-	createdAt: {
-		type: [String, Date, Number],
-	},
-	category: {
-		type: String,
-	},
-	status: {
-		type: String,
-	},
-});
+interface Props {
+	title: string;
+	content: string;
+	createdAt: string | Date | number;
+	category: string;
+	status: string;
+}
+
+const props = defineProps<Props>();
 
 const categoryColor = computed(() => {
 	const colors = {

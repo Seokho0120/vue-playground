@@ -3,11 +3,11 @@ import { ref, watch } from 'vue';
 import { categories } from '@/constants/categories';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
-const props = defineProps({
-	title: String,
-	content: String,
-	category: String,
-});
+const props = defineProps<{
+	title: string;
+	content: string;
+	category: string;
+}>();
 
 const emit = defineEmits(['update:title', 'update:content', 'update:category']);
 
