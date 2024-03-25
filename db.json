@@ -2,9 +2,9 @@
   "posts": [
     {
       "id": "56c1",
-      "title": "제목제목제목",
-      "content": "내용내용내용내용",
-      "category": "Personal",
+      "title": "수정~",
+      "content": "수정~",
+      "category": "Work",
       "status": "In Progress",
       "createdAt": 1710345074348
     },
@@ -13,14 +13,6 @@
       "title": "234234",
       "content": "435456",
       "category": "Personal",
-      "status": "In Progress",
-      "createdAt": 1710345074348
-    },
-    {
-      "id": "56c22",
-      "title": "In Progress",
-      "content": "In Progress",
-      "category": "Study",
       "status": "In Progress",
       "createdAt": 1710345074348
     },
@@ -34,17 +26,17 @@
     },
     {
       "id": "567b5",
-      "title": "123123",
-      "content": "된다55",
-      "category": "Study",
+      "title": "ㅁㄴㅇㅁㄴㅇ",
+      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "category": "Personal",
       "status": "New",
       "createdAt": 1710345064347
     },
     {
       "id": "01b4",
-      "title": "ㅋㅋ22ㅋㅋ",
-      "content": "ㅋㅋ22ㅋㅋ",
-      "category": "Study",
+      "title": "수정이요",
+      "content": "수정이요",
+      "category": "Work",
       "status": "New",
       "createdAt": 1710345064347
     },

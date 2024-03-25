@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import PostItem from '@/components/posts/PostItem.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostHeader from '@/components/posts/PostHeader.vue';
@@ -7,7 +8,6 @@ import PostModal from '@/components/posts/PostModal.vue';
 import { deletePosts, getPostById, getPosts } from '@/api/posts';
 import { useCounterStore } from '@/stores/counter';
 import { Post } from '@/types/posts';
-import { storeToRefs } from 'pinia';
 
 const posts = ref<Post[]>([]);
 const selectedPost = ref<Post>({
@@ -37,44 +37,32 @@ const fetchPosts = async () => {
 		console.error(err);
 	}
 };
-fetchPosts();
+onMounted(fetchPosts);
 
-const filteredNewPosts = computed(() =>
-	posts.value.filter(post => post.status === 'New'),
-);
-
-const filteredInProgressPosts = computed(() =>
-	posts.value.filter(post => post.status === 'In Progress'),
-);
-
-const filteredDonePosts = computed(() =>
-	posts.value.filter(post => post.status === 'Done'),
-);
-
-const openModal = async (id: string) => {
-	const { data } = await getPostById(id);
-	selectedPost.value = data;
-	showModal.value = !showModal.value;
+const filterPostsByStatus = (status: string) => {
+	return computed(() => posts.value.filter(post => post.status === status));
 };
 
-// const openModal = (post: Post) => {
-// 	selectedPost.value = post;
-// 	showModal.value = !showModal.value;
-// };
+const filteredNewPosts = filterPostsByStatus(status.value.newStatus);
+const filteredInProgressPosts = filterPostsByStatus(
+	status.value.progressStatus,
+);
+const filteredDonePosts = filterPostsByStatus(status.value.doneStatus);
+
+const openModal = async (id: string) => {
+	try {
+		const { data } = await getPostById(id);
+		selectedPost.value = data;
+		showModal.value = !showModal.value;
+	} catch (err) {
+		console.error(err);
+	}
+};
 
 const deleteTask = async (postId: string) => {
 	await deletePosts(postId);
-	posts.value = posts.value.filter(post => post.id !== postId);
-	showModal.value = false;
 	fetchPosts();
-};
-
-const updatePostData = (updatedPost: Post) => {
-	console.log('updatedPost', updatedPost);
-	const postIndex = posts.value.findIndex(post => post.id === updatedPost.id);
-	if (postIndex !== -1) {
-		posts.value[postIndex] = updatedPost;
-	}
+	showModal.value = false;
 };
 </script>
 
@@ -155,7 +143,6 @@ const updatePostData = (updatedPost: Post) => {
 		:selectedPost="selectedPost"
 		@deleteTask="deleteTask"
 		@updateSuccess="fetchPosts"
-		@updatePostData="updatePostData"
 	/>
 </template>
 
