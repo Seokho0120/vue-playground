@@ -1,31 +1,40 @@
 <script setup lang="ts">
-import router from '@/router';
-import {
-	PlusIcon,
-	Cog6ToothIcon,
-	BellAlertIcon,
-	ChevronDownIcon,
-} from '@heroicons/vue/24/solid';
+import { ref } from 'vue';
+import { PlusIcon, ChevronDownIcon } from '@heroicons/vue/24/solid';
+import { navList } from '@/constants/navList';
+// import PostModal from '@/components/posts/PostModal.vue';
+import PostForm from '@/components/posts/PostForm.vue';
+import { Form } from '@/types/posts';
+import { createPosts } from '@/api/posts';
 
-const createTask = () => {
-	router.push({
-		name: 'PostCreate',
-	});
+const showCreateModal = ref<boolean>(false);
+
+const openCreateModal = () => {
+	showCreateModal.value = !showCreateModal.value;
 };
 
-const NAV_LIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
+const form = ref<Form>({
+	title: '',
+	content: '',
+	category: '',
+	status: '',
+});
+
+const saveTask = async () => {
+	try {
+		await createPosts({
+			...form.value,
+			createdAt: Date.now(),
+		});
+	} catch (error) {
+		console.error('error', error);
+	}
+};
 </script>
 
 <template>
 	<nav class="flex justify-between border-b-2 pb-7 pt-8">
-		<!-- <div class="border-b-2 pb-7 pt-8"> -->
 		<div class="flex items-center gap-2">
-			<!-- <p class="text-3xl font-bold">Hey, River!</p> -->
-			<!-- <button @click="createTask" type="button" class="bg-gray-400 gap-3">
-				<div>+</div>
-				<div>Create</div>
-			</button> -->
-
 			<button
 				type="button"
 				class="flex items-center gap-1 font-light pl-4 pr-2 py-1 border-[1px] border-gray-200 rounded-3xl"
@@ -49,7 +58,7 @@ const NAV_LIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
 			</button>
 
 			<button
-				@click="createTask"
+				@click="openCreateModal"
 				type="button"
 				class="flex items-center justify-center text-white font-light bg-customMain hover:bg-hoverCustomMain gap-2 ml-4 px-4 py-1 rounded-3xl"
 			>
@@ -59,16 +68,38 @@ const NAV_LIST = [{ icon: Cog6ToothIcon }, { icon: BellAlertIcon }];
 			</button>
 		</div>
 
-		<div class="flex items-center gap-2">
-			<div v-for="(navItem, idx) in NAV_LIST" :key="idx">
+		<ul class="flex items-center gap-2">
+			<li v-for="(navItem, idx) in navList" :key="idx">
 				<component
+					v-if="navItem.icon"
 					:is="navItem.icon"
 					class="p-2 h-10 w-10 justify-center items-center rounded-full text-gray-500 bg-gray-100 hover:bg-customMain hover:text-white cursor-pointer"
-					v-if="navItem.icon"
 				/>
+			</li>
+		</ul>
+
+		<div
+			v-if="showCreateModal"
+			class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
+		>
+			<!-- container -->
+			<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
+				<PostForm
+					v-model:title="form.title"
+					v-model:content="form.content"
+					v-model:category="form.category"
+					@submit.prevent="saveTask"
+				>
+					<template #actions>
+						<button
+							class="font-medium text-sm px-8 py-2.5 text-center me-2 mb-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 rounded-lg"
+						>
+							Save
+						</button>
+					</template>
+				</PostForm>
 			</div>
 		</div>
-		<!-- </div> -->
 	</nav>
 </template>
 
