@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { categories } from '@/constants/categories';
 import { statuses } from '@/constants/statuses';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
+import Dropdown from 'primevue/dropdown';
 
 const props = defineProps<{
 	title: string;
@@ -13,6 +14,7 @@ const props = defineProps<{
 }>();
 
 const selectedCategory = ref<string>(props.category);
+const selectedStatus = ref<{ name: string }>({ name: '' });
 
 const emit = defineEmits<{
 	(e: 'update:title', newVal: string): void;
@@ -51,16 +53,20 @@ const getCategoryColor = (category: string, selected = false) => {
 	);
 };
 
-watch(selectedCategory, newValue => {
-	emit('update:category', newValue);
-});
-
 watch(
 	() => props.category,
 	newValue => {
 		selectedCategory.value = newValue;
 	},
 );
+
+watch(selectedCategory, newValue => {
+	emit('update:category', newValue);
+});
+
+watch(selectedStatus, newValue => {
+	emit('update:status', newValue.name);
+});
 </script>
 
 <template>
@@ -78,10 +84,21 @@ watch(
 					$emit('update:title', ($event.target as HTMLInputElement).value)
 				"
 				type="text"
-				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
+				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100 focus:outline-none"
 				placeholder="Title"
 				id="title"
 				autofocus
+			/>
+		</div>
+
+		<div class="flex flex-col">
+			<label class="text-2xl font-bold pb-4">Status</label>
+			<Dropdown
+				v-model="selectedStatus"
+				:options="statuses"
+				optionLabel="name"
+				placeholder="Select a Status"
+				class="w-full bg-gray-100"
 			/>
 		</div>
 
@@ -92,7 +109,7 @@ watch(
 				@input="
 					$emit('update:content', ($event.target as HTMLInputElement).value)
 				"
-				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100"
+				class="w-full p-2 pl-4 text-sm rounded-xl bg-gray-100 focus:outline-none"
 				placeholder="Content"
 				id="content"
 				rows="5"
@@ -117,24 +134,36 @@ watch(
 			</div>
 		</div>
 
-		<!-- TODO: Dropdown으로 변경 예정 -->
-		<div class="flex flex-col">
-			<label class="text-2xl font-bold pb-4">Status</label>
-			<div class="flex flex-wrap gap-3">
-				<div
-					v-for="status in statuses"
-					:key="status.id"
-					class="flex items-center gap-2"
-				>
-					{{ status.name }}
-				</div>
-			</div>
-		</div>
-
 		<div class="flex justify-center gap-2 mt-4">
 			<slot name="actions"></slot>
 		</div>
 	</form>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped>
+/* .p-dropdown .p-component .p-inputwrapper .p-inputwrapper-filled {
+	color: white;
+	font-size: 0.875rem;
+} */
+
+/* .p-dropdown-label.p-inputtext.p-placeholder {
+	color: white;
+} */
+
+/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled {
+	color: red;
+} */
+/* 
+.p-dropdown-label .p-inputtext .p-placeholder {
+	color: blue;
+} */
+
+/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled.span {
+	color: red;
+	background-color: gray;
+} */
+/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled.p-inputwrapper-focus.p-overlay-open {
+	background: red;
+	border-color: blue;
+} */
+</style>

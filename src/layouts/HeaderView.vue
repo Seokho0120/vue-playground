@@ -15,6 +15,8 @@ const form = ref<Form>({
 	status: '',
 });
 
+console.log('form', form);
+
 const openCreateModal = () => {
 	showCreateModal.value = !showCreateModal.value;
 };
