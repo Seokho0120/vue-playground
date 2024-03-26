@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
 import PostModal from '@/components/posts/PostModal.vue';
 import PostList from '@/components/posts/PostList.vue';
 import { deletePosts, getPostById, getPosts } from '@/api/posts';
 import { Post } from '@/types/posts';
+import { usePostStore } from '@/stores/posts';
+
+const postStore = usePostStore();
 
 const posts = ref<Post[]>([]);
 const selectedPost = ref<Post>({
@@ -48,6 +51,17 @@ const deleteTask = async (postId: string) => {
 	fetchPosts();
 	showModal.value = false;
 };
+
+watch(
+	() => postStore.postsUpdated,
+	newValue => {
+		if (newValue) {
+			fetchPosts();
+			postStore.setPostsUpdated(false);
+		}
+	},
+	{ immediate: true },
+);
 </script>
 
 <template>

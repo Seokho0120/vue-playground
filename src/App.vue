@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavView from '@/layouts/NavView.vue';
 import TheView from '@/layouts/TheView.vue';
-import HeaderView from './layouts/HeaderView.vue';
+import HeaderView from '@/layouts/HeaderView.vue';
 </script>
 
 <template>

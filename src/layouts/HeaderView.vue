@@ -5,6 +5,9 @@ import { navList } from '@/constants/navList';
 import PostForm from '@/components/posts/PostForm.vue';
 import { Form } from '@/types/posts';
 import { createPosts } from '@/api/posts';
+import { usePostStore } from '@/stores/posts';
+
+const postStore = usePostStore();
 
 const showCreateModal = ref<boolean>(false);
 
@@ -15,20 +18,23 @@ const form = ref<Form>({
 	status: '',
 });
 
-console.log('form', form);
-
 const openCreateModal = () => {
 	showCreateModal.value = !showCreateModal.value;
 };
 
 const saveTask = async () => {
 	try {
-		await createPosts({
+		const { status } = await createPosts({
 			...form.value,
 			createdAt: Date.now(),
 		});
-	} catch (error) {
-		console.error('error', error);
+
+		if (status === 201) {
+			showCreateModal.value = false;
+			postStore.setPostsUpdated(true);
+		}
+	} catch (err) {
+		console.error('error', err);
 	}
 };
 </script>
