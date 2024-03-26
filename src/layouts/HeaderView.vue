@@ -2,16 +2,11 @@
 import { ref } from 'vue';
 import { PlusIcon, ChevronDownIcon } from '@heroicons/vue/24/solid';
 import { navList } from '@/constants/navList';
-// import PostModal from '@/components/posts/PostModal.vue';
 import PostForm from '@/components/posts/PostForm.vue';
 import { Form } from '@/types/posts';
 import { createPosts } from '@/api/posts';
 
 const showCreateModal = ref<boolean>(false);
-
-const openCreateModal = () => {
-	showCreateModal.value = !showCreateModal.value;
-};
 
 const form = ref<Form>({
 	title: '',
@@ -19,6 +14,10 @@ const form = ref<Form>({
 	category: '',
 	status: '',
 });
+
+const openCreateModal = () => {
+	showCreateModal.value = !showCreateModal.value;
+};
 
 const saveTask = async () => {
 	try {
@@ -35,6 +34,7 @@ const saveTask = async () => {
 <template>
 	<nav class="flex justify-between border-b-2 pb-7 pt-8">
 		<div class="flex items-center gap-2">
+			<!-- TODO: btn 컨텐츠 적용 예정 -->
 			<button
 				type="button"
 				class="flex items-center gap-1 font-light pl-4 pr-2 py-1 border-[1px] border-gray-200 rounded-3xl"
@@ -82,12 +82,13 @@ const saveTask = async () => {
 			v-if="showCreateModal"
 			class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
 		>
-			<!-- container -->
 			<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
 				<PostForm
+					v-model="showCreateModal"
 					v-model:title="form.title"
 					v-model:content="form.content"
 					v-model:category="form.category"
+					v-model:status="form.status"
 					@submit.prevent="saveTask"
 				>
 					<template #actions>

@@ -1,28 +1,28 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { categories } from '@/constants/categories';
+import { statuses } from '@/constants/statuses';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 const props = defineProps<{
 	title: string;
 	content: string;
 	category: string;
+	status?: string;
+	modelValue?: boolean;
 }>();
 
-const emit = defineEmits(['update:title', 'update:content', 'update:category']);
+const selectedCategory = ref<string>(props.category);
 
-const selectedCategory = ref(props.category);
+const emit = defineEmits<{
+	(e: 'update:title', newVal: string): void;
+	(e: 'update:content', newVal: string): void;
+	(e: 'update:category', newVal: string): void;
+	(e: 'update:status', newVal: string): void;
+	(e: 'update:modelValue', newVal: boolean): void;
+}>();
 
-watch(selectedCategory, newValue => {
-	emit('update:category', newValue);
-});
-
-watch(
-	() => props.category,
-	newValue => {
-		selectedCategory.value = newValue;
-	},
-);
+const closeModal = () => emit('update:modelValue', false);
 
 const selectCategory = (category: string) => {
 	selectedCategory.value = category;
@@ -50,6 +50,17 @@ const getCategoryColor = (category: string, selected = false) => {
 		(colors ? 'bg-blue-200 text-blue-1000' : 'bg-blue-100 text-blue-800')
 	);
 };
+
+watch(selectedCategory, newValue => {
+	emit('update:category', newValue);
+});
+
+watch(
+	() => props.category,
+	newValue => {
+		selectedCategory.value = newValue;
+	},
+);
 </script>
 
 <template>
@@ -57,8 +68,8 @@ const getCategoryColor = (category: string, selected = false) => {
 		<div class="flex flex-col">
 			<div class="flex items-center justify-between pb-4">
 				<label for="title" class="text-2xl font-bold">Task Name</label>
-				<button>
-					<XMarkIcon class="h-4 w-4" />
+				<button @click="closeModal">
+					<XMarkIcon class="h-5 w-5" />
 				</button>
 			</div>
 			<input
@@ -102,6 +113,20 @@ const getCategoryColor = (category: string, selected = false) => {
 					>
 						{{ category.name }}
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- TODO: Dropdown으로 변경 예정 -->
+		<div class="flex flex-col">
+			<label class="text-2xl font-bold pb-4">Status</label>
+			<div class="flex flex-wrap gap-3">
+				<div
+					v-for="status in statuses"
+					:key="status.id"
+					class="flex items-center gap-2"
+				>
+					{{ status.name }}
 				</div>
 			</div>
 		</div>
