@@ -23,16 +23,16 @@ watch(searchText, newValue => {
 
 <template>
 	<form @submit.prevent>
-		<div class="flex relative">
-			<div class="absolute top-3 flex items-center ps-3 pointer-events-none">
-				<MagnifyingGlassIcon class="h-4 w-4" />
-			</div>
+		<div
+			class="flex items-center border bg-gray-100 rounded-xl overflow-hidden"
+		>
+			<MagnifyingGlassIcon class="h-4 w-4 text-gray-500 ml-3" />
 			<input
 				:value="title"
 				@input="changeTitle"
 				placeholder="Search for Tasks Title"
 				type="text"
-				class="block w-full p-2 pl-10 text-sm rounded-xl bg-gray-100"
+				class="w-full flex-1 p-2 pl-2 text-sm bg-transparent outline-none"
 			/>
 		</div>
 	</form>
