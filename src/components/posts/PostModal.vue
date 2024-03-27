@@ -5,6 +5,10 @@ import PostForm from './PostForm.vue';
 import { Form, Post } from '@/types/posts';
 import { updatePost } from '@/api/posts';
 
+interface Colors {
+	[key: string]: string;
+}
+
 const showEdit = ref<boolean>(false);
 const form = ref<Form>({
 	title: '',
@@ -18,10 +22,10 @@ const props = defineProps<{
 	selectedPost: Post;
 }>();
 
-const { selectedPost } = props;
+const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
 
 watch(
-	() => selectedPost,
+	() => props.selectedPost,
 	newVal => {
 		if (newVal) {
 			form.value.title = newVal.title;
@@ -34,41 +38,16 @@ watch(
 	{ immediate: true },
 );
 
-const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
-
 const closeModal = () => emit('update:showModal', false);
-
-const categoryColor = computed(() => {
-	const colors: Record<string, string> = {
-		Personal: 'bg-blue-100 text-blue-800',
-		Work: 'bg-green-100 text-green-800',
-		Study: 'bg-yellow-100 text-yellow-800',
-		Health: 'bg-red-100 text-red-800',
-		Other: 'bg-gray-100 text-gray-800',
-	};
-
-	return form.value.category
-		? colors[form.value.category] || 'bg-blue-100'
-		: 'bg-blue-100';
-});
-
-const removeTask = () => {
-	if (selectedPost?.id) {
-		emit('deleteTask', selectedPost?.id);
-	}
-};
-
-const editTable = () => {
-	showEdit.value = true;
-};
+const removeTask = () => emit('deleteTask', props.selectedPost?.id);
+const toggleEdit = () => (showEdit.value = true);
 
 const editTask = async () => {
-	if (!selectedPost.id) return;
+	if (!props.selectedPost.id) return;
 
 	try {
-		const { status } = await updatePost(selectedPost.id, {
-			...form.value,
-		});
+		const { status } = await updatePost(props.selectedPost.id, form.value);
+
 		if (status === 200) {
 			emit('updateSuccess');
 			showEdit.value = false;
@@ -77,6 +56,18 @@ const editTask = async () => {
 		console.error('error', error);
 	}
 };
+
+const colors: Colors = {
+	Personal: 'bg-blue-100 text-blue-800',
+	Work: 'bg-green-100 text-green-800',
+	Study: 'bg-yellow-100 text-yellow-800',
+	Health: 'bg-red-100 text-red-800',
+	Other: 'bg-gray-100 text-gray-800',
+};
+
+const categoryColor = computed(
+	() => colors[form.value.category] || 'bg-blue-100',
+);
 </script>
 
 <template>
@@ -130,7 +121,7 @@ const editTask = async () => {
 
 				<div class="flex items-center gap-2 mt-8">
 					<button
-						@click="editTable"
+						@click="toggleEdit"
 						class="bg-gray-100 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 rounded"
 					>
 						Edit

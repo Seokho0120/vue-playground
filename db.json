@@ -25,14 +25,6 @@
       "createdAt": 1710345064347
     },
     {
-      "id": "567b5",
-      "title": "오픈",
-      "content": "오픈",
-      "category": "Work",
-      "status": "New",
-      "createdAt": 1710345064347
-    },
-    {
       "id": "01b4",
       "title": "수정이요22",
       "content": "수정이요22",
@@ -194,11 +186,19 @@
     },
     {
       "id": "ea8a",
-      "title": "\b수정22",
-      "content": "\b수정22",
-      "category": "Other",
+      "title": "333",
+      "content": "333",
+      "category": "Personal",
       "status": "New",
       "createdAt": 1711530983523
+    },
+    {
+      "id": "1fd0",
+      "title": "asd",
+      "content": "asd",
+      "category": "Other",
+      "status": "New",
+      "createdAt": 1711534585812
     }
   ]
 }

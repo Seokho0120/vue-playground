@@ -19,6 +19,14 @@ const form = ref<Form>({
 	createdAt: 0,
 });
 
+const resetForm = () => ({
+	title: '',
+	content: '',
+	category: '',
+	status: '',
+	createdAt: 0,
+});
+
 const openCreateModal = () => {
 	showCreateModal.value = !showCreateModal.value;
 };
@@ -33,13 +41,7 @@ const saveTask = async () => {
 		if (status === 201) {
 			showCreateModal.value = false;
 			postStore.setPostsUpdated(true);
-			form.value = {
-				title: '',
-				content: '',
-				category: '',
-				status: '',
-				createdAt: 0,
-			};
+			form.value = resetForm();
 		}
 	} catch (err) {
 		console.error('error', err);
