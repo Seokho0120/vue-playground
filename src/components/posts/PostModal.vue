@@ -11,6 +11,7 @@ const form = ref<Form>({
 	content: '',
 	category: '',
 	status: '',
+	createdAt: 0,
 });
 
 const props = defineProps<{
@@ -27,6 +28,7 @@ watch(
 			form.value.content = newVal.content;
 			form.value.category = newVal.category;
 			form.value.status = newVal.status;
+			form.value.createdAt = newVal.createdAt;
 		}
 	},
 	{ immediate: true },
@@ -107,7 +109,7 @@ const editTask = async () => {
 			<div v-if="showEdit === false" class="flex flex-col gap-4">
 				<div class="flex gap-4">
 					<p class="font-bold">Due Date</p>
-					<p>{{ $dayjs(selectedPost?.createdAt).format('YYYY-MM-DD') }}</p>
+					<p>{{ $dayjs(form?.createdAt).format('YYYY-MM-DD') }}</p>
 				</div>
 
 				<div class="flex gap-4">
@@ -147,6 +149,8 @@ const editTask = async () => {
 				v-model:title="form.title"
 				v-model:content="form.content"
 				v-model:category="form.category"
+				v-model:status="form.status"
+				v-model:createAt="form.createdAt"
 				@submit.prevent="editTask"
 			>
 				<template #actions>

@@ -20,9 +20,9 @@ const selectedPost = ref<Post>({
 });
 const showModal = ref<boolean>(false);
 const status = ref({
-	newStatus: 'New',
-	progressStatus: 'In Progress',
-	doneStatus: 'Done',
+	new: 'New',
+	progress: 'In Progress',
+	done: 'Done',
 });
 const title = ref<string>('');
 
@@ -76,21 +76,13 @@ watch(
 
 	<div class="flex flex-col bg-gray-100 p-8 rounded-xl">
 		<div class="grid grid-cols-3 gap-6">
+			<PostList :posts="posts" :status="status.new" @openModal="openModal" />
 			<PostList
 				:posts="posts"
-				:status="status.newStatus"
+				:status="status.progress"
 				@openModal="openModal"
 			/>
-			<PostList
-				:posts="posts"
-				:status="status.progressStatus"
-				@openModal="openModal"
-			/>
-			<PostList
-				:posts="posts"
-				:status="status.doneStatus"
-				@openModal="openModal"
-			/>
+			<PostList :posts="posts" :status="status.done" @openModal="openModal" />
 		</div>
 	</div>
 

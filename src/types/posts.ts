@@ -11,4 +11,5 @@ export interface FetchPostsResponse {
 	data: Post[];
 }
 
-export type Form = Omit<Post, 'id' | 'createdAt'>;
+export type Form = Omit<Post, 'id'>;
+// export type Form = Omit<Post, 'id' | 'createdAt'>;

@@ -16,6 +16,7 @@ const form = ref<Form>({
 	content: '',
 	category: '',
 	status: '',
+	createdAt: 0,
 });
 
 const openCreateModal = () => {

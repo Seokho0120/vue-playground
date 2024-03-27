@@ -10,6 +10,7 @@ const props = defineProps<{
 	content: string;
 	category: string;
 	status?: string;
+	createAt?: number;
 	modelValue?: boolean;
 }>();
 
@@ -21,6 +22,7 @@ const emit = defineEmits<{
 	(e: 'update:content', newVal: string): void;
 	(e: 'update:category', newVal: string): void;
 	(e: 'update:status', newVal: string): void;
+	(e: 'update:createAt', newVal: string): void;
 	(e: 'update:modelValue', newVal: boolean): void;
 }>();
 
