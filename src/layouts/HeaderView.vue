@@ -33,6 +33,13 @@ const saveTask = async () => {
 		if (status === 201) {
 			showCreateModal.value = false;
 			postStore.setPostsUpdated(true);
+			form.value = {
+				title: '',
+				content: '',
+				category: '',
+				status: '',
+				createdAt: 0,
+			};
 		}
 	} catch (err) {
 		console.error('error', err);
