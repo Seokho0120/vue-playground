@@ -68,6 +68,16 @@ const colors: Colors = {
 const categoryColor = computed(
 	() => colors[form.value.category] || 'bg-blue-100',
 );
+
+const statusClass = computed(() => {
+	if (form.value?.status === 'New') {
+		return 'bg-[#33ca25]';
+	} else if (form.value?.status === 'In Progress') {
+		return 'bg-[#6433ca]';
+	} else {
+		return 'bg-[#ac4cdc]';
+	}
+});
 </script>
 
 <template>
@@ -82,11 +92,7 @@ const categoryColor = computed(
 				<h2 class="text-3xl font-bold">{{ form?.title }}</h2>
 				<div class="flex items-center gap-4">
 					<span
-						:class="{
-							'bg-[#33ca25]': form?.status === 'New',
-							'bg-[#6433ca]': form?.status === 'In Progress',
-							'bg-[#ac4cdc]': form?.status === 'Done',
-						}"
+						:class="statusClass"
 						class="text-sm px-4 py-1 rounded-3xl text-white"
 					>
 						{{ form?.status }}
