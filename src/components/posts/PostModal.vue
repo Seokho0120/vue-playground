@@ -4,7 +4,6 @@ import { XMarkIcon } from '@heroicons/vue/24/solid';
 import PostForm from './PostForm.vue';
 import { Form, Post } from '@/types/posts';
 import { updatePost } from '@/api/posts';
-// import router from '@/router';
 
 const showEdit = ref<boolean>(false);
 const form = ref<Form>({
@@ -71,7 +70,6 @@ const editTask = async () => {
 		if (status === 200) {
 			emit('updateSuccess');
 			showEdit.value = false;
-			// 	// closeModal();
 		}
 	} catch (error) {
 		console.error('error', error);
@@ -80,18 +78,15 @@ const editTask = async () => {
 </script>
 
 <template>
-	<!-- background -->
 	<div
 		class="w-full fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center"
 	>
-		<!-- container -->
 		<div class="w-[700px] m-4 bg-white p-8 rounded-lg shadow-lg">
 			<div
 				v-if="showEdit === false"
 				class="flex items-center justify-between pb-4"
 			>
 				<h2 class="text-3xl font-bold">{{ form?.title }}</h2>
-				<!-- <h2 class="text-3xl font-bold">{{ selectedPost?.title }}</h2> -->
 				<div class="flex items-center gap-4">
 					<span
 						:class="{
@@ -102,7 +97,6 @@ const editTask = async () => {
 						class="text-sm px-4 py-1 rounded-3xl text-white"
 					>
 						{{ form?.status }}
-						<!-- {{ selectedPost?.status }} -->
 					</span>
 					<button @click="closeModal">
 						<XMarkIcon class="h-4 w-4" />
@@ -123,7 +117,6 @@ const editTask = async () => {
 							:class="`${categoryColor} text-xs me-2 px-2.5 py-0.5 rounded-full`"
 						>
 							{{ form?.category }}
-							<!-- {{ selectedPost?.category }} -->
 						</span>
 					</div>
 				</div>
@@ -131,7 +124,6 @@ const editTask = async () => {
 				<div class="flex flex-col gap-2">
 					<p class="font-bold">Description</p>
 					<p>{{ form?.content }}</p>
-					<!-- <p>{{ selectedPost?.content }}</p> -->
 				</div>
 
 				<div class="flex items-center gap-2 mt-8">
