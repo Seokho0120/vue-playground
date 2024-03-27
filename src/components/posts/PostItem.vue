@@ -27,14 +27,6 @@ const categoryColor = computed(() => colors[props.category] || 'bg-blue-100');
 </script>
 
 <template>
-	<!-- 이미지 
-		<div class="h-full">
-			<img
-				class="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg"
-				src="../../assets/posts/best-react-practices.png"
-				alt="best-react-practices"
-			/>
-		</div> -->
 	<div
 		class="w-full flex flex-col bg-white border border-gray-100 rounded-lg shadow hover:bg-gray-100"
 	>

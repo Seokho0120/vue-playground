@@ -5,66 +5,55 @@ import { statuses } from '@/constants/statuses';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 import Dropdown from 'primevue/dropdown';
 
-const props = defineProps<{
+interface Colors {
+	[key: string]: string;
+}
+
+interface Props {
 	title: string;
 	content: string;
 	category: string;
 	status?: string;
 	createAt?: number;
 	modelValue?: boolean;
-}>();
+}
+
+const props = defineProps<Props>();
+
+const emit = defineEmits([
+	'update:title',
+	'update:content',
+	'update:category',
+	'update:status',
+	'update:createAt',
+	'update:modelValue',
+]);
 
 const selectedCategory = ref<string>(props.category);
 const selectedStatus = ref<{ name: string }>({ name: '' });
-
-const emit = defineEmits<{
-	(e: 'update:title', newVal: string): void;
-	(e: 'update:content', newVal: string): void;
-	(e: 'update:category', newVal: string): void;
-	(e: 'update:status', newVal: string): void;
-	(e: 'update:createAt', newVal: string): void;
-	(e: 'update:modelValue', newVal: boolean): void;
-}>();
 
 const closeModal = () => emit('update:modelValue', false);
 
 const selectCategory = (category: string) => {
 	selectedCategory.value = category;
+	emit('update:category', category);
 };
 
-const getCategoryColor = (category: string, selected = false) => {
-	const colors = {
-		Personal: selected
-			? 'bg-blue-200 text-blue-1000'
-			: 'bg-blue-100 text-blue-800',
-		Work: selected
-			? 'bg-green-200 text-green-1000'
-			: 'bg-green-100 text-green-800',
-		Study: selected
-			? 'bg-yellow-200 text-yellow-1000'
-			: 'bg-yellow-100 text-yellow-800',
-		Health: selected ? 'bg-red-200 text-red-1000' : 'bg-red-100 text-red-800',
-		Other: selected
-			? 'bg-gray-200 text-gray-1000'
-			: 'bg-gray-100 text-gray-800',
-	};
-
-	return (
-		colors[category as keyof typeof colors] ||
-		(colors ? 'bg-blue-200 text-blue-1000' : 'bg-blue-100 text-blue-800')
-	);
+const categoryColors: Colors = {
+	Personal: 'bg-blue-200 text-blue-1000',
+	Work: 'bg-green-200 text-green-1000',
+	Study: 'bg-yellow-200 text-yellow-1000',
+	Health: 'bg-red-200 text-red-1000',
+	Other: 'bg-gray-200 text-gray-1000',
 };
 
-watch(
-	() => props.category,
-	newValue => {
-		selectedCategory.value = newValue;
-	},
-);
+const getCategoryColor = (category: string, selected = false): string => {
+	const baseColor = categoryColors[category];
 
-watch(selectedCategory, newValue => {
-	emit('update:category', newValue);
-});
+	return selected
+		? baseColor
+		: baseColor.replace('200', '100').replace('1000', '800');
+};
 
 watch(selectedStatus, newValue => {
 	emit('update:status', newValue.name);
@@ -142,30 +131,4 @@ watch(selectedStatus, newValue => {
 	</form>
 </template>
 
-<style scoped>
-/* .p-dropdown .p-component .p-inputwrapper .p-inputwrapper-filled {
-	color: white;
-	font-size: 0.875rem;
-} */
-
-/* .p-dropdown-label.p-inputtext.p-placeholder {
-	color: white;
-} */
-
-/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled {
-	color: red;
-} */
-/* 
-.p-dropdown-label .p-inputtext .p-placeholder {
-	color: blue;
-} */
-
-/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled.span {
-	color: red;
-	background-color: gray;
-} */
-/* .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled.p-inputwrapper-focus.p-overlay-open {
-	background: red;
-	border-color: blue;
-} */
-</style>
+<style scoped></style>

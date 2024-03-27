@@ -25,14 +25,6 @@
       "createdAt": 1710345064347
     },
     {
-      "id": "01b4",
-      "title": "수정이요33",
-      "content": "수정이요33",
-      "category": "Health",
-      "status": "New",
-      "createdAt": 1710345064347
-    },
-    {
       "id": "af03",
       "title": "23123",
       "content": "123123",
@@ -42,9 +34,9 @@
     },
     {
       "id": "7099",
-      "title": "123123",
-      "content": "123123",
-      "category": "Health",
+      "title": "gg",
+      "content": "gg",
+      "category": "Work",
       "status": "New",
       "createdAt": 1711471395605
     },
@@ -66,11 +58,19 @@
     },
     {
       "id": "98bc",
-      "title": "hi",
-      "content": "hi",
-      "category": "Other",
+      "title": "123",
+      "content": "123",
+      "category": "Work",
       "status": "New",
       "createdAt": 1711548854593
+    },
+    {
+      "id": "3da4",
+      "title": "ㅁㄴㅇ",
+      "content": "ㅁㄴㅇ",
+      "category": "Study",
+      "status": "New",
+      "createdAt": 1711554396732
     }
   ]
 }

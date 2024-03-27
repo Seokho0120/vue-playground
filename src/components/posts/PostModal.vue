@@ -9,6 +9,10 @@ interface Colors {
 	[key: string]: string;
 }
 
+const props = defineProps<{
+	selectedPost: Post;
+}>();
+
 const showEdit = ref<boolean>(false);
 const form = ref<Form>({
 	title: '',
@@ -17,12 +21,6 @@ const form = ref<Form>({
 	status: '',
 	createdAt: 0,
 });
-
-const props = defineProps<{
-	selectedPost: Post;
-}>();
-
-const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
 
 watch(
 	() => props.selectedPost,
@@ -38,6 +36,7 @@ watch(
 	{ immediate: true },
 );
 
+const emit = defineEmits(['update:showModal', 'deleteTask', 'updateSuccess']);
 const closeModal = () => emit('update:showModal', false);
 const removeTask = () => emit('deleteTask', props.selectedPost?.id);
 const toggleEdit = () => (showEdit.value = true);

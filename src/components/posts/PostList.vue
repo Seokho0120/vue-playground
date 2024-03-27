@@ -26,17 +26,24 @@ const openModal = (id: string) => {
 	<div class="flex flex-col gap-4">
 		<PostHeader :counter="filterPostsByStatus.length" :status="status" />
 		<div
-			v-for="post in filterPostsByStatus"
-			:key="post.id"
+			v-for="{
+				category,
+				content,
+				createdAt,
+				status,
+				title,
+				id,
+			} in filterPostsByStatus"
+			:key="id"
 			class="w-full cursor-pointer"
 		>
 			<PostItem
-				@click="openModal(post.id as string)"
-				:title="post.title"
-				:content="post.content"
-				:created-at="post.createdAt"
-				:category="post.category"
-				:status="post.status"
+				@click="openModal(id as string)"
+				:title="title"
+				:content="content"
+				:created-at="createdAt"
+				:category="category"
+				:status="status"
 			/>
 		</div>
 	</div>
